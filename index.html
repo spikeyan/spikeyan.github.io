@@ -2,9 +2,561 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+    <script src="js/createjs/easeljs-0.8.2.min.js"></script>
+    <script src="js/createjs/tweenjs-0.6.2.min.js"></script>
+    <style>
+        @font-face {
+            font-family: kamuifont;
+            src: url("font/INFROMAN.TTF") format("truetype");
+        /*kamuiproblem 该处后期要把TTF转成EOT*/
+        }
+        body{
+            margin:0;
+            padding: 0;
+        }
+        img{
+            width:300px;
+            height:150px;
+        }
+        #kcanvas{
+            display: block;
+            position: fixed;
+            /*width: 100%;*/
+            /*height:100%;*/
+            /*background-color: #cecff4;*/
+            z-index:0;
+        }
+        div{
+            position: relative;
+        }
+        .head{
+            width:100%;
+            height:40px;
+            background-color:black;
+            color:white;
+            float:left;
+        }
+        .headleft{
+            background-color:black;
+            font-family: monospace;
+            width:300px;
+            height:20px;
+            font-size: 20px;
+            margin-top:8px;
+            text-align: center;
+            float:left;
+            opacity:0;
+        }
+        .headright{
+            margin-right:30px;
+            float:right;
+            height:40px;
+            z-index:5;
+            opacity:0;
+        }
+        .headright>div{
+            font-family: monospace;
+            font-size:15px;
+            float:right;
+            margin-top:0;
+            margin-right:0;
+            padding:11px 15px;
+            transition: transform 0.5s linear,background-color 0.5s linear;
+        }
+        .headright>div:hover {
+            background-color: #ff0015;
+            color: #000000;
+            cursor:pointer;
+        }
+        .kcontent{
+            width:80%;
+            margin-top:5px;
+            margin-left:10px;
+            padding:50px 100px;
+            /*background-color: red;*/
+            position: relative;
+            float:left;
+            opacity:0;
+            text-shadow: 5px 5px 5px #c0bfc6;
+            /*此DIV要在手机中重做*/
+            /*color:red;*/
+        }
+        .kcontent1{
+            height:100px;
+            overflow: visible;
+            font-family: kamuifont;
+            text-shadow: 5px 5px 5px #000000;
+            color: #c0bfc6;
+            font-size: 25px;
+        }
+        .kcontent2{
+            font-family: monospace;
+            font-size: 20px;
+            text-shadow: 6px 6px 5px #3586a9;
+            color: #f9f8ff;
+            visibility: hidden;
+            position: absolute;
+        }
+        .product{
+            font-size: 15px;
+            overflow: hidden;
+            border-radius: 5px;;
+            width:300px;
+            height:175px;
+            margin-left: auto;
+            margin-right:8px;
+            margin-bottom: 8px;
+            position: relative;
+            float:left;
+            text-align: center;
+            text-shadow:none;
+            border: 1px solid #ff0015;
+            background-color: black;
+            /*background-color: #090910;*/
+        }
+        #k1,#k2,#k3,#k4,#k5{
+            margin-top:100px;
+        }
+        @media screen and (max-width:700px) {
+            .headleft{
+                visibility: hidden;
+                position: absolute;
+            }
+            .kcontent{
+                width:95%;
+                margin-top:20px;
+                margin-left:10px;
+                padding:0;
+                /*background-color: red;*/
+                position: relative;
+                float:left;
+                /*此DIV要在手机中重做*/
+            }
+            #k1,#k2,#k3,#k4,#k5{
+                height:1px;
+                margin-top:50px;
+            }
+            .product{
+                margin-left:20px;
+            }
+        }
+
+        @media screen and (max-width:350px) {
+            .headright{
+                margin-right:10px;
+            }
+            .product{
+                margin-right:auto;
+            }
+        }
+    </style>
+    <title>spikeyan</title>
 </head>
-<body>
-<p>hi im spike</p>
+<body onload="kgo()">
+    <h1 id="nlpw">hi , i'm spike ,  it's loading now , please wait ~~~</h1>
+    <canvas id="kcanvas" width="800" height="450"></canvas>
+    <div class="head">
+    <div class="headleft" id="op1">Web前端开发--<cite>Spike</cite></div>
+    <div class="headright" id="op2">
+        <div id="about">关于</div>
+        <div id="moon">月圆</div>
+        <div id="product">作品</div>
+        <div id="tech">技能</div>
+        <div id="author">作者</div>
+    </div>
+    </div>
+    <div class="kcontent" id="op3">
+        <div class="kcontent1" id="k0">
+            From Westminster Abbey's gravestone.<br/><br/>When I was young and free and my imagination had no limits, I dreamed of changing the world. As I grew older and wiser, I discovered the world would not change,so I shortened my sights somewhat and decided to change only my country.<br/><br/>But it, too, seemed immovable.<br/><br/>As I grew into my twilight years, in one last desperate attempt, I settled for changing only my family, those closest to me, but alas, they would have none of it.<br/><br/>And now as I lie on my deathbed, I suddenly realize: If I had only changed my self first, then by example I would have changed my family.<br/><br/>From their inspiration and encouragement, I would then have been able to better my country and, who knows, I may have even changed the world.<br/><br/>
+        </div>
+        <div class="kcontent2" id="k1">
+            画家用画笔描绘出对世界的理解。<br/><br/>
+            钢琴家敲击着琴键，渲染着世人的灵魂。<br/><br/>
+            欢迎来到我的GITHUB，我是SPIKE，职业是WEB前端开发。“开发”是我的工具，是实现设计最好的方法。专注技术不局限于技术。我们一起加油吧~。<br/><br/>交流邮箱:1417515948@qq.com
+        </div>
+        <div class="kcontent2" id="k2">
+            HTML5，CSS3，JavaScript，Ajax，JSON<br/><br/>
+            JQuery，CreateJS，Bootstrap，D3JS<br/><br/>
+            Oracle，MSSQL，My SQL，Tribon，Rhino<br/><br/>
+            正在研究:AngularJS，WebGL ThreeJS
+        </div>
+        <div class="kcontent2" id="k3">
+            <div class="product" id="p1"><img src="images/product/greedisland.jpg">作为猎人迷制作的贪婪之岛H5游戏</div>
+            <div class="product" id="p2"><img src="images/product/govementjob.jpg">某数据分析项目H5主屏</div>
+            <div class="product" id="p3"><img src="images/product/animateforapp.jpg">APP活动动画(截图好累还截不好)</div>
+            <div class="product" id="p4"><img src="images/product/gameforhuodong.jpg">某网站理财活动H5小页游</div>
+            <div class="product" id="p5"><img src="images/product/three3dbox.jpg">THREE 3D 天空盒-3D练手中</div>
+            <div class="product" id="p6"><img src="images/product/sry.jpg"> T。T</div>
+        </div>
+        <div class="kcontent2" id="k4"></div>
+        <div class="kcontent2" id="k5">
+            作者一栏是我的状态,有时会有更新.<br/><br/>
+            技能一栏是做过些东西使用的方法,随着时间的推移会增加,会减少,减少的自然是被新技术淘汰不用了.<br/><br/>
+            作品一栏会持续添加些做的东西的片段,偶尔也会在单独作品里写一些小文章.<br/><br/>
+            月圆一栏是个秘密.<br/><br/>
+        </div>
+    </div>
+<script>
+//设置页面切换部分
+    var k=["k0","k1","k2","k3","k4","k5"];
+    document.getElementById("author").addEventListener("click",function(){authorc(1)});
+    document.getElementById("tech").addEventListener("click",function(){authorc(2)});
+    document.getElementById("product").addEventListener("click",function(){authorc(3)});
+    document.getElementById("moon").addEventListener("click",function(){authorc(4)});
+    document.getElementById("about").addEventListener("click",function(){authorc(5)});
+    function authorc(x){
+        for(var i=0;i<6;i++){
+            if(i!=x){
+                document.getElementById(k[i]).setAttribute("style","visibility:hidden;position:absolute;overflow:hidden");
+            }else{
+                document.getElementById(k[i]).setAttribute("style","visibility:visible;position:relative;overflow:visible");
+            }
+        }
+        switch(x)
+        {
+            case 1:author();break;
+            case 2:tech();break;
+            case 3:product();break;
+            case 4:moon();break;
+            case 5:about();break;
+        }
+        stage.removeChild(k0t);
+    }
+//canvas 定义部分
+    window.addEventListener( 'resize', onWindowResize, false );
+    var canvas=document.getElementById("kcanvas");
+    var stage=new createjs.Stage(canvas);
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+    stage.alpha=1;
+
+//定义各个场景的背景颜色图形-可能后期会选择图片替换
+//    var pp0=new createjs.Shape();
+
+//    var pp1=new createjs.Shape();
+//    var pp2=new createjs.Shape();
+//    var pp3=new createjs.Shape();
+//    var pp4=new createjs.Shape();
+//    var pp5=new createjs.Shape();
+
+//新定义的每个场景的图片
+    var pp0pimg=new Image();
+    var pp0=new createjs.Bitmap();
+    pp0pimg.onload=pp0pimgload;
+    function pp0pimgload(){pp0.image=pp0pimg;pp0.regX=pp0pimg.width/2;}
+    pp0pimg.src="images/ppstage/pp0p.jpg";
+
+    var pp1pimg=new Image();
+    var pp1=new createjs.Bitmap();
+    pp1pimg.onload=pp1pimgload;
+    function pp1pimgload(){pp1.image=pp1pimg;pp1.regX=pp1pimg.width/2;}
+    pp1pimg.src="images/ppstage/pp1p.jpg";
+
+    var pp2pimg=new Image();
+    var pp2=new createjs.Bitmap();
+    pp2pimg.onload=pp2pimgload;
+    function pp2pimgload(){pp2.image=pp2pimg;pp2.regX=pp2pimg.width/2;}
+    pp2pimg.src="images/ppstage/pp2p.jpg";
+
+    var pp3pimg=new Image();
+    var pp3=new createjs.Bitmap();
+    pp3pimg.onload=pp3pimgload;
+    function pp3pimgload(){pp3.image=pp3pimg;pp3.regX=pp3pimg.width/2;}
+    pp3pimg.src="images/ppstage/pp3p.jpg";
+
+    var pp4pimg=new Image();
+    var pp4=new createjs.Bitmap();
+    pp4pimg.onload=pp4pimgload;
+    function pp4pimgload(){pp4.image=pp4pimg;pp4.regX=pp4pimg.width/2;}
+    pp4pimg.src="images/ppstage/pp4p.jpg";
+
+    var pp5pimg=new Image();
+    var pp5=new createjs.Bitmap();
+    pp5pimg.onload=pp5pimgload;
+    function pp5pimgload(){pp5.image=pp5pimg;pp5.regX=pp5pimg.width/2;}
+    pp5pimg.src="images/ppstage/pp5p.jpg";
+
+
+
+
+//定义需要控制的DOM元素.
+    var k0t=new createjs.DOMElement("k0");
+    stage.addChild(k0t);
+    k0t.alpha=0;
+    var k1t=new createjs.DOMElement("k1");
+    var k2t=new createjs.DOMElement("k2");
+    var k3t=new createjs.DOMElement("k3");
+    var k5t=new createjs.DOMElement("k5");
+
+//定义的5个场景判断,在执行元素中设置IF来判断是否在当前场景,避免其他场景的行为影响到该场景元素.
+    var t1=false;var t2=false;var t3=false;var t4=false;var t5=false;
+
+//    pp0.graphics.beginLinearGradientFill(["white", "#F4E268"], [0, 1], 0, 0, 0, 200).drawRect(0, 0, 2560, 1440);
+//    pp1.graphics.beginLinearGradientFill(["white", "#90FFE4"], [0, 1], 0, 0, 0, 200).drawRect(0, 0, 2560, 1440);
+//    pp2.graphics.beginLinearGradientFill(["white", "#6FC261"], [0, 1], 0, 0, 0, 200).drawRect(0, 0, 2560, 1440);
+//    pp3.graphics.beginLinearGradientFill(["white", "#548DC2"], [0, 1], 0, 0, 0, 200).drawRect(0, 0, 2560, 1440);
+//    pp4.graphics.beginLinearGradientFill(["white", "#F540FF"], [0, 1], 0, 0, 0, 200).drawRect(0, 0, 2560, 1440);
+//    pp5.graphics.beginLinearGradientFill(["white", "#C2644C"], [0, 1], 0, 0, 0, 200).drawRect(0, 0, 2560, 1440);
+
+//预先设置CANVAS的 Z-INDEX 用来实现遮盖网页内容的效果
+    document.getElementById("kcanvas").setAttribute("style","Z-index:20");
+
+//设置CONTAINER来装载 叶子 原因:直接在STAGE中加载同样内容会出问题,因此尽量多在CONTAINER中装载元素
+var pp=new createjs.Container();
+stage.addChild(pp);
+
+//使用滤镜效果定义图片的好处,比CREATEJS原始定义的方式好,可以获取图片的宽高,便于调整
+var pic1img=new Image();
+var pic1=new createjs.Bitmap();
+pic1img.onload=pic1imgload;
+function pic1imgload(){pic1.image=pic1img;}
+pic1img.src="images/leaf/leaf02.png";
+
+
+//绘制心图
+    var heart=new createjs.Shape();
+    heart.graphics.beginFill("pink").bezierCurveTo(75,40,70,25,50,25)
+        .bezierCurveTo(20,25,20,62.5,20,62.5)
+        .bezierCurveTo(20,80,40,102,75,120)
+        .bezierCurveTo(110,102,130,80,130,62.5)
+        .bezierCurveTo(130,62.5,130,25,100,25)
+        .bezierCurveTo(85,25,75,37,75,40).endFill();
+    heart.regX=75;
+    heart.regY=70;
+
+//运行一次的参数,在叶子效果结束后调用一次
+var babyonce=true;
+
+//设置TICKER  SETFPS尽量不要使用 已经被CREATEJS遗弃
+    createjs.Ticker.timingMode = createjs.Ticker.RAF;
+    createjs.Ticker.addEventListener("tick",render);
+
+//进入AUTHOR场景的函数
+    function author(){
+        t1=true;t2=false;t3=false;t4=false;t5=false;
+        removepp0();
+        stage.addChild(pp1);
+        stage.addChild(pp);
+        pp1.alpha=0;
+        createjs.Tween.get(pp1).to({alpha:1},500);
+        authorstage();
+    }
+    function tech(){
+        t1=false;t2=true;t3=false;t4=false;t5=false;
+        removepp0();
+        stage.addChild(pp2);
+        stage.addChild(pp);
+        pp2.alpha=0;
+        createjs.Tween.get(pp2).to({alpha:1},500);
+        techstage();
+
+    }
+    function product(){removepp0();stage.addChild(pp3);
+        t1=false;t2=false;t3=true;t4=false;t5=false;
+        removepp0();
+        stage.addChild(pp3);
+        stage.addChild(pp);
+        pp3.alpha=0;
+        createjs.Tween.get(pp3).to({alpha:1},500);
+        productstage();
+
+    }
+    function moon(){removepp0();stage.addChild(pp4);
+        t1=false;t2=false;t3=false;t4=true;t5=false;
+        removepp0();
+        stage.addChild(pp4);
+        stage.addChild(pp);
+        pp4.alpha=0;
+        createjs.Tween.get(pp4).to({alpha:1},500);
+        moonstage();
+    }
+    function about(){removepp0();stage.addChild(pp5);
+        t1=false;t2=false;t3=false;t4=false;t5=true;
+        removepp0();
+        stage.addChild(pp5);
+        stage.addChild(pp);
+        pp5.alpha=0.01;
+        createjs.Tween.get(pp5).to({alpha:1},500);
+        aboutstage();
+    }
+
+    function authorstage(){
+        var authorpic0=new createjs.Shape();
+        var authorpic1=new createjs.Shape();
+        var authorpic2=new createjs.Shape();
+        authorpic0.graphics.setStrokeStyle(Math.random()*5+1).beginStroke("white").drawRect(0,0,Math.random()*50+50,Math.random()*50+50).endStroke();
+        authorpic1.graphics.setStrokeStyle(Math.random()*5+1).beginStroke("white").drawRect(0,0,Math.random()*50+50,Math.random()*50+50).endStroke();
+        authorpic2.graphics.setStrokeStyle(Math.random()*5+1).beginStroke("white").drawRect(0,0,Math.random()*50+50,Math.random()*50+50).endStroke();
+        pp.addChild(authorpic0,authorpic1,authorpic2);
+        pp.addChild(k1t);
+        k1t.scaleY=0;
+        k1t.scaleX=0;
+        k1t.alpha=0;
+        createjs.Tween.get(k1t).to({scaleX:1,scaleY:1,alpha:1},500);
+        authorloop0();
+        authorloop1();
+        authorloop2();
+        function authorloop0(){if(t1){createjs.Tween.get(authorpic0).to({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,rotation:Math.random()*1080},Math.random()*5000+5000).call(authorloop0);}}
+        function authorloop1(){if(t1){createjs.Tween.get(authorpic1).to({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,rotation:Math.random()*1080},Math.random()*5000+5000).call(authorloop1);}}
+        function authorloop2(){if(t1){createjs.Tween.get(authorpic2).to({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,rotation:Math.random()*1080},Math.random()*5000+5000).call(authorloop2);}}
+    }
+
+    function techstage(){
+        var techpic=[];
+        for(var i=0;i<2;i++) {
+            techpic[i] = new createjs.Shape();
+            techpic[i].graphics.setStrokeStyle(Math.random()*5+2).beginStroke("white").drawPolyStar(0, 0, 40+Math.random()*40, Math.random()*3+4|0, 0.6, -90);
+            pp.addChild(techpic[i]);
+        }
+        techloop0();techloop1();
+        function techloop0(){if(t2){createjs.Tween.get(techpic[0]).to({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,rotation:Math.random()*1080},Math.random()*5000+5000).call(techloop0);}}
+        function techloop1(){if(t2){createjs.Tween.get(techpic[1]).to({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,rotation:Math.random()*1080},Math.random()*5000+5000).call(techloop1);}}
+        pp.addChild(k2t);
+        k2t.scaleY=0;
+        k2t.scaleX=0;
+        k2t.alpha=0;
+        createjs.Tween.get(k2t).to({scaleX:1,scaleY:1,alpha:1},500);
+    }
+
+    function productstage(){
+        pp.addChild(k3t);
+        k3t.scaleY=0;
+        k3t.scaleX=0;
+        k3t.alpha=0;
+        createjs.Tween.get(k3t).to({scaleX:1,scaleY:1,alpha:1},500);
+    }
+
+    function moonstage(){
+
+        createjs.Tween.get(pp4).to({y:-20},100).to({y:20},100).to({y:-10},100).to({y:10},100).to({y:0},100);
+        for(var i=0;i<window.innerWidth*window.innerHeight/5000;i++){
+            heart.regX=Math.random()*window.innerWidth;
+            heart.regY=Math.random()*window.innerHeight;
+            var hea=heart.clone();
+            hea.alpha=1;
+            hea.x=Math.random()*window.innerWidth;
+            hea.y=Math.random()*window.innerHeight;
+            hea.rotation=Math.random()*1080;
+            createjs.Tween.get(hea).to({alpha:0,rotation:0,x:window.innerWidth/2,y:window.innerHeight/2},Math.random()*4000);
+            pp.addChild(hea);
+        }
+    }
+
+    function aboutstage(){
+        pp.addChild(k5t);
+        k5t.scaleY=0;
+        k5t.scaleX=0;
+        k5t.alpha=0;
+        createjs.Tween.get(k5t).to({scaleX:1,scaleY:1,alpha:1},500);
+    }
+
+    function removepp0(){
+        stage.removeChild(pp0);
+        pp.removeAllChildren();
+        stage.removeChild(pp);
+        document.getElementById("kcanvas").setAttribute("style","Z-index:0");
+
+    }
+
+    function kgo(){
+        document.body.removeChild(document.getElementById("nlpw"));
+        document.getElementById("kcanvas").setAttribute("style","Z-index:20");
+        ppcss();
+
+
+        for(var i=0;i<window.innerWidth*window.innerHeight/4000;i++){
+            var pic=pic1.clone();
+            //下两行改变 LEAF-PIC1的滤镜效果,显示出不同的叶子,对性能有影响
+//            pic.filters = [new createjs.ColorMatrixFilter(new createjs.ColorMatrix(0, 0, 0, Math.random()*30))];
+//            pic.cache(0, 0, pic1img.width, pic1img.height);
+            pic.regX=50;
+            pic.regY=85;
+            pic.alpha=0;
+            pic.x=Math.random()*window.innerWidth;
+            pic.y=Math.random()*window.innerHeight;
+            pic.rotation=Math.random()*360;
+            createjs.Tween.get(pic).to({alpha:1,rotation:Math.random()*1080,x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight},Math.random()*4000);
+            pp.addChild(pic);
+            pp0.alpha = 0;
+            stage.addChild(pp0);
+            pp0.y=40;
+            createjs.Tween.get(pp0).wait(4400).to({alpha: 1}, 1000);
+        }
+        for(i=0;i<pp.getNumChildren();i++){
+            if(pp.getChildAt(i).y<window.innerHeight/2){
+                createjs.Tween.get(pp.getChildAt(i)).wait(4500).to({y:-1000},2000);
+            }else{
+                createjs.Tween.get(pp.getChildAt(i)).wait(4500).to({y:window.innerHeight+1000},2000).call(gobaby);
+            }
+        }
+        document.getElementById("op1").setAttribute("style","opacity:1");
+        document.getElementById("op2").setAttribute("style","opacity:1");
+        document.getElementById("op3").setAttribute("style","opacity:1");
+
+
+        function gobaby() {
+            if(babyonce) {
+                document.getElementById("kcanvas").setAttribute("style", "Z-index:0");
+//                pp0.alpha = 0;
+//                stage.addChild(pp0);
+                createjs.Tween.get(pp0).to({y:0}, 1000).call(function(){pp.removeAllChildren();});
+                createjs.Tween.get(k0t).to({alpha:1}, 1000).call(k0gogo);
+                babyonce=false;
+                function k0gogo(){
+                    createjs.Tween.get(pp0,{loop:true}).to({y:30},10000).to({y:0},10000);
+                }
+            }
+        }
+    }
+
+//屏幕改变的时候 CANVAS的尺寸跟着屏幕改变
+    function onWindowResize(){
+        canvas.width=window.innerWidth;
+        canvas.height=window.innerHeight;
+        ppcss();
+        stage.update();
+    }
+
+//场景图片适应屏幕的函数
+    function ppcss(){
+        pp0.x=window.innerWidth/2;
+        if(window.innerWidth>pp0pimg.width){pp0.scaleX=window.innerWidth/pp0pimg.width;}
+        if(window.innerHeight>pp0pimg.height){pp0.scaleY=window.innerHeight/pp0pimg.height;}
+
+        pp1.x=window.innerWidth/2;
+        if(window.innerWidth>pp1pimg.width){pp1.scaleX=window.innerWidth/pp1pimg.width;}
+        if(window.innerHeight>pp1pimg.height){pp1.scaleY=window.innerHeight/pp1pimg.height;}
+
+        pp2.x=window.innerWidth/2;
+        if(window.innerWidth>pp2pimg.width){pp2.scaleX=window.innerWidth/pp2pimg.width;}
+        if(window.innerHeight>pp2pimg.height){pp2.scaleY=window.innerHeight/pp2pimg.height;}
+
+        pp3.x=window.innerWidth/2;
+        if(window.innerWidth>pp3pimg.width){pp3.scaleX=window.innerWidth/pp3pimg.width;}
+        if(window.innerHeight>pp3pimg.height){pp3.scaleY=window.innerHeight/pp3pimg.height;}
+
+        pp4.x=window.innerWidth/2;
+        if(window.innerWidth>pp4pimg.width){pp4.scaleX=window.innerWidth/pp4pimg.width;}
+        if(window.innerHeight>pp4pimg.height){pp4.scaleY=window.innerHeight/pp4pimg.height;}
+
+        pp5.x=window.innerWidth/2;
+        if(window.innerWidth>pp5pimg.width){pp5.scaleX=window.innerWidth/pp5pimg.width;}
+        if(window.innerHeight>pp5pimg.height){pp5.scaleY=window.innerHeight/pp5pimg.height;}
+
+
+    }
+
+    function render(event){
+//        var m=stage.getNumChildren();
+//        for(var i=0;i<m-1;i++){
+//            if(stage.getChildAt(i).alpha=0){
+//                stage.removeChildAt(i);
+//            }
+//        }
+        stage.update(event);
+    }
+
+</script>
 </body>
 </html>
