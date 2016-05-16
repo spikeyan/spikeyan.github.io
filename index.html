@@ -200,6 +200,7 @@
 <script>
 //设置页面切换部分
     var k=["k0","k1","k2","k3","k4","k5"];
+    var k1=["p1","p2","p3","p4","p5","p6"];
     document.getElementById("author").addEventListener("click",function(){authorc(1)});
     document.getElementById("tech").addEventListener("click",function(){authorc(2)});
     document.getElementById("product").addEventListener("click",function(){authorc(3)});
@@ -212,7 +213,8 @@
             }else{
                 document.getElementById(k[i]).setAttribute("style","visibility:visible;position:relative;overflow:visible");
             }
-        }
+            }
+
         switch(x)
         {
             case 1:author();break;
@@ -222,6 +224,18 @@
             case 5:about();break;
         }
         stage.removeChild(k0t);
+        if(x==3){
+            for(i=1;i<7;i++){
+                document.getElementById(k1[i]).setAttribute("style","position:relative");
+            }
+        }else{
+            for(i=1;i<7;i++){
+                document.getElementById(k1[i]).setAttribute("style","position:absolute");
+            }
+        }
+
+
+
     }
 //canvas 定义部分
     window.addEventListener( 'resize', onWindowResize, false );
