@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>skybox</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="js/threejs/three.min.js"></script>
+    <script src="js/createjs/tweenjs-0.6.2.min.js"></script>
+</head>
+<body>
+<script>
+    //3d新CANVAS
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 4000 );
+
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    renderer.domElement.setAttribute("id","canvas3d");
+    document.body.appendChild(renderer.domElement);
+
+    //对DDD进行操作
+
+    var lon = 90, lat = 0, phi = 0, theta = 0, target = new THREE.Vector3(),isUserInteracting = false;
+
+    //定义天空盒
+    var path = "textures/cube/";
+    var format = '.jpg';
+    var urls = [
+        path + 'px' + format, path + 'nx' + format,
+        path + 'py' + format, path + 'ny' + format,
+        path + 'pz' + format, path + 'nz' + format
+    ];
+    var textureCube = new THREE.CubeTextureLoader().load( urls );
+    textureCube.mapping = THREE.CubeRefractionMapping;
+
+    var shader = THREE.ShaderLib[ "cube" ];
+    shader.uniforms[ "tCube" ].value = textureCube;
+    var material = new THREE.ShaderMaterial( {
+                fragmentShader: shader.fragmentShader,
+                vertexShader: shader.vertexShader,
+                uniforms: shader.uniforms,
+                side: THREE.BackSide
+            } ),
+            mesh = new THREE.Mesh( new THREE.BoxGeometry( 3000, 3000, 3000 ), material );
+    scene.add( mesh );
+    camera.position.z=10;
+    createjs.Ticker.addEventListener("tick",render1c);
+
+
+    function render1c(){
+        if ( isUserInteracting === false ) {
+            lon += 0.1;
+        }
+        lat = Math.max( - 85, Math.min( 85, lat ) );
+        phi = THREE.Math.degToRad( 90 - lat );
+        theta = THREE.Math.degToRad( lon );
+
+        target.x = 500 * Math.sin( phi ) * Math.cos( theta );
+        target.y = 500 * Math.cos( phi );
+        target.z = 500 * Math.sin( phi ) * Math.sin( theta );
+
+        camera.lookAt( target );
+        renderer.render(scene,camera);
+    }
+</script>
+</body>
+</html>
