@@ -147,6 +147,10 @@
             margin-top:15px;
             display:block;
             float:left;
+            transition: transform 0.5s linear,background-color 0.5s linear;
+        }
+        .spike1:hover{
+            border: 1px solid #64fff8;
         }
         .spike1 img{
             width:80px;
@@ -223,6 +227,9 @@
         //定义开场人物图片
         var songzhongji = new createjs.Bitmap("images/human/songzhongji.png");
         var liutao = new createjs.Bitmap("images/human/liutao.png");
+        //定义扑克牌图片
+        var puke = new Image();
+        puke.src="sprite/CardDeck.png";
 
         //新定义的每个场景的图片
         var pp0pimg=new Image();
@@ -255,11 +262,22 @@
         function pp4pimgload(){pp4.image=pp4pimg;pp4.regX=pp4pimg.width/2;}
         pp4pimg.src="images/show/05.jpg";
 
+        //定义树叶及容器
+
+        var pp=new createjs.Container();
+        bstage.addChild(pp);
+
+        var pic1img=new Image();
+        var leaf=new createjs.Bitmap();
+        pic1img.onload=pic1imgload;
+        function pic1imgload(){leaf.image=pic1img;}
+        pic1img.src="images/leaf/leaf03.png";
+
         //定义kcontent div为可控元素
         var kcondiv=new createjs.DOMElement(document.getElementById("kcontent"));
 
         //在WINDOW中绑定屏幕改变事件
-        window.addEventListener( 'resize', onWindowResize, false );
+        window.addEventListener('resize', onWindowResize, false);
 
         var keynote=[true,true,true,true,true];
         var d3key=false;
@@ -422,7 +440,6 @@
                         node.appendChild(nodetitle);
                         node.href=arr.objs[i].src;
                         node.target="_blank";
-
                     }
                 }
             }
@@ -434,7 +451,7 @@
             var showdate=new Date();
             var monthday=new createjs.Text((showdate.getMonth()+1)+" 月 "+showdate.getDate().toString()+" 号", "50px kamuiuse", "black");
             var wedday=new createjs.Text("","50px kamuiuse", "black");
-            (function(){if(showdate.getDay()==1){wedday.text= "新的一周 礼拜一!"}if(showdate.getDay()==2){wedday.text= "加油 星期二"}if(showdate.getDay()==3){wedday.text= "加油加油 星期三"}if(showdate.getDay()==4){wedday.text= "坚持两天 星期四"}if(showdate.getDay()==5){wedday.text= "OH YEAH 星期五"}if(showdate.getDay()==6){wedday.text= "周末拉 周六"}if(showdate.getDay()==7){wedday.text= "明天要上班 礼拜天"}})();
+            (function(){if(showdate.getDay()==1){wedday.text= "新的一周 礼拜一!"}if(showdate.getDay()==2){wedday.text= "加油 星期二"}if(showdate.getDay()==3){wedday.text= "加油加油 星期三"}if(showdate.getDay()==4){wedday.text= "坚持两天 星期四"}if(showdate.getDay()==5){wedday.text= "OH YEAH 星期五"}if(showdate.getDay()==6){wedday.text= "周末拉 周六"}if(showdate.getDay()==0){wedday.text= "明天要上班 礼拜天"}})();
             wedday.alpha=0;wedday.textAlign="center";wedday.x=innerWidth/2;wedday.y=innerHeight/2+60;
             monthday.textAlign="center";monthday.x=innerWidth/2;monthday.y=innerHeight/2;monthday.alpha=0;
             songzhongji.regX=208;songzhongji.regY=200;songzhongji.x=innerWidth/2;songzhongji.y=innerHeight/2;songzhongji.alpha=0;songzhongji.scaleX=0;
@@ -466,6 +483,7 @@
         function cleardiv(){
             document.getElementById("kcontent").innerHTML="";
             bstage.removeAllEventListeners();
+            pp.removeAllChildren();
         }
 
 
@@ -515,9 +533,21 @@
 
                 bstage.addChild(pp2);
                 bstage.addChild(kcondiv);
+                bstage.addChild(pp);
                 createjs.Tween.get(pp2).to({alpha:1},500);
                 createjs.Tween.get(kcondiv).wait(400).to({alpha:1},1000);
                 createjs.Tween.get(pp2,{loop:true}).to({y:30},10000).to({y:0},10000);
+                for(var i=0;i<window.innerWidth*window.innerHeight/5000;i++){
+                    leaf.regX=Math.random()*window.innerWidth;
+                    leaf.regY=Math.random()*window.innerHeight;
+                    var lea=leaf.clone();
+                    lea.alpha=1;
+                    lea.x=Math.random()*window.innerWidth;
+                    lea.y=Math.random()*window.innerHeight;
+                    lea.rotation=Math.random()*1080;
+                    createjs.Tween.get(lea).to({alpha:0,rotation:0,x:window.innerWidth/2,y:window.innerHeight/2},Math.random()*4000);
+                    pp.addChild(lea);
+                }
                 bstage.addEventListener("click",openskybox);
                 function openskybox(){window.open("skybox.html");}
             }
@@ -558,7 +588,7 @@
                 keynote=[true,true,true,true,false];
                 pp4.alpha=0;
                 kcondiv.alpha=0;
-                document.getElementById("kcontent").innerHTML="<div id='spikeyan'>前端开发<br/><br/>6年计算机行业经验<br/><br/>技术能力全面,有管理能力<br/><br/>项目产品经验丰富<br/><br/>学习能力突出,英文优秀<br/><br/>学无止境,一起加油<br/><br/>本站有彩蛋~</div>";
+                document.getElementById("kcontent").innerHTML="<div id='spikeyan'>前端开发<br/><br/>6年计算机行业经验<br/><br/>技术能力全面,有管理能力<br/><br/>项目产品经验丰富<br/><br/>学习能力突出,英文优秀<br/><br/>学无止境,一起加油<br/><br/>spike_yan@163.com</div>";
                 bstage.addChild(pp4);
                 bstage.addChild(kcondiv);
                 createjs.Tween.get(pp4).to({alpha:1},500);
@@ -568,8 +598,7 @@
                 function techloop(){
                     if(!keynote[4]){
                     var cardsprite = new createjs.SpriteSheet({
-                    framerate: 10,
-                    "images": ["sprite/CardDeck.png"],
+                    "images": [puke],
                     "frames": {"regX": 0, "regY": 0, "height": 96, "width": 68},
                     "animations": {
                         cardgo: [Math.random()*55]

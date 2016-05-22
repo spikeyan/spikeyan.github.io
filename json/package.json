@@ -100,6 +100,16 @@
       "name":"parser",
       "img":"images/icons/parser.png",
       "src":"http://phaser.io/"
+    },
+    {
+      "name":"less",
+      "img":"images/icons/less.png",
+      "src":"http://lesscss.org/"
+    },
+    {
+      "name":"sass",
+      "img":"images/icons/sass.png",
+      "src":"http://sass-lang.com/"
     }
 
   ]
