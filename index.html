@@ -129,6 +129,35 @@
             text-align: right;
             line-height: 20px;
         }
+        .kcontent4{
+            overflow: hidden;
+            display:block;
+            float:left;
+            margin-right: 10px;
+            margin-top:10px;
+            width:90%;
+            border:1px solid wheat;
+            color:whitesmoke;
+            position: relative;
+        }
+        .kcontent5{
+            font-size:20px;
+            overflow: hidden;
+            display:block;
+            float:left;
+            margin-left: 10px;
+            width:95%;
+            color:whitesmoke;
+        }
+        .kcontent6{
+            color: #0016ff;
+            font-family: monospace;
+            text-align: right;
+            width:100%;
+            height:100%;
+            background-color: pink;
+            opacity:0.3;
+        }
         #west{
             margin-top:50px;
             overflow: visible;
@@ -385,25 +414,53 @@
             xmlhttp.open("GET",xurl, true);
             xmlhttp.send();
             function output(arr){
-                if(arr.error_code==0&&url=="json/news.txt"){
-                    for(var i=0;i<arr.result.ps;i++){
-                        var node=document.createElement("a");
-                        var nodeimg=new Image();
-                        nodeimg.alt="图像未能载入";
-                        nodeimg.src=arr.result.list[i].firstImg;
+//                本地新闻JSON函数
+//                if(arr.error_code==0&&url=="json/news.txt"){
+//                    for(var i=0;i<arr.result.ps;i++){
+//                        var node=document.createElement("a");
+//                        var nodeimg=new Image();
+//                        nodeimg.alt="图像未能载入";
+//                        nodeimg.src=arr.result.list[i].firstImg;
+//                        document.getElementById("kcontent").appendChild(node);
+//                        node.setAttribute("class","kcontent1");
+//                        node.appendChild(nodeimg);
+//                        var nodetitle=document.createElement("Div");
+//                        nodetitle.setAttribute("class","kcontent2");
+//                        nodetitle.innerHTML=arr.result.list[i].title;
+//                        node.appendChild(nodetitle);
+//                        var nodefrom=document.createElement("Div");
+//                        nodefrom.setAttribute("class","kcontent3");
+//                        nodefrom.innerHTML="来源:"+arr.result.list[i].source;
+//                        node.appendChild(nodefrom);
+//                        node.href=arr.result.list[i].url;
+//                        node.target="_blank";
+//                    }
+//                }
+                //抓取开放新闻API无图片的
+                if(arr.status=="000000"){
+                    for(i=0;i<arr.detail.length;i++){
+                        var ntime=new Date();
+                        var nmin;
+                        ntime.setTime(arr.detail[i].behot_time);
+                        if(ntime.getMinutes()<10){
+                            nmin="0"+ntime.getMinutes().toString();
+                        }else{
+                            nmin=ntime.getMinutes();
+                        }
+                        node=document.createElement("A");
                         document.getElementById("kcontent").appendChild(node);
-                        node.setAttribute("class","kcontent1");
-                        node.appendChild(nodeimg);
-                        var nodetitle=document.createElement("Div");
-                        nodetitle.setAttribute("class","kcontent2");
-                        nodetitle.innerHTML=arr.result.list[i].title;
+                        node.setAttribute("class","kcontent4");
+                        nodetitle=document.createElement("Div");
+                        nodetitle.setAttribute("class","kcontent5");
+                        nodetitle.innerHTML=arr.detail[i].title;
                         node.appendChild(nodetitle);
-                        var nodefrom=document.createElement("Div");
-                        nodefrom.setAttribute("class","kcontent3");
-                        nodefrom.innerHTML="来源:"+arr.result.list[i].source;
+                        nodefrom=document.createElement("Div");
+                        nodefrom.setAttribute("class","kcontent6");
+                        nodefrom.innerHTML=ntime.getFullYear()+"."+(ntime.getMonth()+1)+"."+ntime.getDate()+"  "+ntime.getHours()+":"+nmin+ " "+arr.detail[i].source;
                         node.appendChild(nodefrom);
-                        node.href=arr.result.list[i].url;
+                        node.href=arr.detail[i].article_url;
                         node.target="_blank";
+
                     }
                 }
 
@@ -451,7 +508,7 @@
             var showdate=new Date();
             var monthday=new createjs.Text((showdate.getMonth()+1)+" 月 "+showdate.getDate().toString()+" 号", "50px kamuiuse", "black");
             var wedday=new createjs.Text("","50px kamuiuse", "black");
-            (function(){if(showdate.getDay()==1){wedday.text= "新的一周 礼拜一!"}if(showdate.getDay()==2){wedday.text= "加油 星期二"}if(showdate.getDay()==3){wedday.text= "加油加油 星期三"}if(showdate.getDay()==4){wedday.text= "坚持两天 星期四"}if(showdate.getDay()==5){wedday.text= "OH YEAH 星期五"}if(showdate.getDay()==6){wedday.text= "周末拉 周六"}if(showdate.getDay()==0){wedday.text= "明天要上班 礼拜天"}})();
+            (function(){if(showdate.getDay()==1){wedday.text= "礼拜一!"}if(showdate.getDay()==2){wedday.text= "加油 星期二"}if(showdate.getDay()==3){wedday.text= "加油 星期三"}if(showdate.getDay()==4){wedday.text= "坚持 星期四"}if(showdate.getDay()==5){wedday.text= "YEAH 星期五"}if(showdate.getDay()==6){wedday.text= "周末拉 周六"}if(showdate.getDay()==0){wedday.text= "礼拜天"}})();
             wedday.alpha=0;wedday.textAlign="center";wedday.x=innerWidth/2;wedday.y=innerHeight/2+60;
             monthday.textAlign="center";monthday.x=innerWidth/2;monthday.y=innerHeight/2;monthday.alpha=0;
             songzhongji.regX=208;songzhongji.regY=200;songzhongji.x=innerWidth/2;songzhongji.y=innerHeight/2;songzhongji.alpha=0;songzhongji.scaleX=0;
@@ -461,13 +518,13 @@
             if(Math.random()>0.5){
                 fstage.addChild(songzhongji);
                 createjs.Tween.get(songzhongji).wait(600).to({scaleX:1,alpha:1},300).wait(500).to({scaleX:0,alpha:0},300).call(s1over);
-                createjs.Tween.get(monthday).to({alpha:1},300).to({alpha:0},300);
-                createjs.Tween.get(wedday).to({alpha:1},300).to({alpha:0},300);
+                createjs.Tween.get(monthday).to({alpha:1},400).to({alpha:0},200);
+                createjs.Tween.get(wedday).to({alpha:1},400).to({alpha:0},200);
             }else{
                 fstage.addChild(liutao);
                 createjs.Tween.get(liutao).wait(600).to({scaleX:1,alpha:1},300).wait(500).to({scaleX:0,alpha:0},300).call(s1over);
-                createjs.Tween.get(monthday).to({alpha:1},300).to({alpha:0},300);
-                createjs.Tween.get(wedday).to({alpha:1},300).to({alpha:0},300);
+                createjs.Tween.get(monthday).to({alpha:1},400).to({alpha:0},200);
+                createjs.Tween.get(wedday).to({alpha:1},400).to({alpha:0},200);
             }
             function s1over(){
                 fstage.removeAllChildren();
@@ -500,7 +557,7 @@
                 bstage.addChild(kcondiv);
                 createjs.Tween.get(pp0).to({alpha:1},500);
                 createjs.Tween.get(kcondiv).wait(400).to({alpha:1},500);
-                returnjsonuseajax("json/news.txt");
+                returnjsonuseajax("http://api.1-blog.com/biz/bizserver/news/list.do");
             }
         }
 
@@ -588,7 +645,7 @@
                 keynote=[true,true,true,true,false];
                 pp4.alpha=0;
                 kcondiv.alpha=0;
-                document.getElementById("kcontent").innerHTML="<div id='spikeyan'>前端开发<br/><br/>6年计算机行业经验<br/><br/>技术能力全面,有管理能力<br/><br/>项目产品经验丰富<br/><br/>学习能力突出,英文优秀<br/><br/>学无止境,一起加油<br/><br/>spike_yan@163.com</div>";
+                document.getElementById("kcontent").innerHTML="<div id='spikeyan'>前端开发<br/><br/>6年计算机行业经验<br/><br/>技术能力全面,有管理能力<br/><br/>项目产品经验丰富<br/><br/>学习能力突出,英文优秀<br/><br/>spike_yan@163.com<br/><br/>本页面采用原生JS搭配游戏引擎CREATEJS开发，算是一次新颖的尝试，正在找好的美工配合提供素材，后期有想法可以加入游戏的元素。MOVIE界面还没有对应的免费API，所以目前是本地的JSON数据，无链接。3D和WORK界面点击屏幕左右10%部分会弹出新页面，分别是WEBGL渲染和CSS渲染的3D界面。</div>";
                 bstage.addChild(pp4);
                 bstage.addChild(kcondiv);
                 createjs.Tween.get(pp4).to({alpha:1},500);

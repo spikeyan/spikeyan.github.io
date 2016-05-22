@@ -110,7 +110,16 @@
       "name":"sass",
       "img":"images/icons/sass.png",
       "src":"http://sass-lang.com/"
+    },
+    {
+      "name":"ruby",
+      "img":"images/icons/ruby.png",
+      "src":"https://www.ruby-lang.org/"
+    },
+    {
+      "name":"mozilla",
+      "img":"images/icons/mozilla.png",
+      "src":"https://developer.mozilla.org"
     }
-
   ]
 }
