@@ -362,7 +362,6 @@
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var myArr = JSON.parse(xmlhttp.responseText);
                     output(myArr);
-                    console.log(myArr);
                 }
             };
             xmlhttp.open("GET",xurl, true);
