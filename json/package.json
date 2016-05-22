@@ -65,6 +65,42 @@
       "name":"typescript",
       "img":"images/icons/typescript.png",
       "src":"https://www.typescriptlang.org/"
+    },
+    {
+      "name":"csstricks",
+      "img":"images/icons/csstricks.png",
+      "src":"https://css-tricks.com/"
+    },
+    {
+      "name":"bootstrap",
+      "img":"images/icons/bootstrap.png",
+      "src":"http://getbootstrap.com/"
+    },
+    {
+      "name":"unity3d",
+      "img":"images/icons/unity3d.png",
+      "src":"http://unity3d.com/"
+    },
+    {
+      "name":"backbone",
+      "img":"images/icons/backbone.png",
+      "src":"http://backbonejs.org/"
+    },
+    {
+      "name":"construct2",
+      "img":"images/icons/construct2.png",
+      "src":"http://www.construct2.com/"
+    },
+    {
+      "name":"threejs",
+      "img":"images/icons/threejs.png",
+      "src":"http://threejs.org/"
+    },
+    {
+      "name":"parser",
+      "img":"images/icons/parser.png",
+      "src":"http://phaser.io/"
     }
+
   ]
 }

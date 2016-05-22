@@ -408,7 +408,7 @@
                 }
                 if(arr.name=="Spike_work"){
                     for(i=0;i<arr.objs.length;i++){
-                        node=document.createElement("DIV");
+                        node=document.createElement("A");
                         nodeimg=new Image();
                         nodeimg.src=arr.objs[i].img;
                         document.getElementById("kcontent").appendChild(node);
@@ -417,6 +417,8 @@
                         nodetitle=document.createElement("Div");
                         nodetitle.innerHTML=arr.objs[i].name;
                         node.appendChild(nodetitle);
+                        node.href=arr.objs[i].src;
+                        node.target="_blank";
 
                     }
                 }
