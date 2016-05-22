@@ -220,6 +220,10 @@
         var bcanvas=document.getElementById("bcanvas");
         var bstage=new createjs.Stage(bcanvas);
 
+        //定义开场人物图片
+        var songzhongji = new createjs.Bitmap("images/human/songzhongji.png");
+        var liutao = new createjs.Bitmap("images/human/liutao.png");
+
         //新定义的每个场景的图片
         var pp0pimg=new Image();
         var pp0=new createjs.Bitmap();
@@ -432,8 +436,6 @@
             var monthday=new createjs.Text((showdate.getMonth()+1)+" 月 "+showdate.getDate().toString()+" 号", "50px kamuiuse", "black");
             var wedday=new createjs.Text("","50px kamuiuse", "black");
             (function(){if(showdate.getDay()==1){wedday.text= "新的一周 礼拜一!"}if(showdate.getDay()==2){wedday.text= "加油 星期二"}if(showdate.getDay()==3){wedday.text= "加油加油 星期三"}if(showdate.getDay()==4){wedday.text= "坚持两天 星期四"}if(showdate.getDay()==5){wedday.text= "OH YEAH 星期五"}if(showdate.getDay()==6){wedday.text= "周末拉 周六"}if(showdate.getDay()==7){wedday.text= "明天要上班 礼拜天"}})();
-            var songzhongji = new createjs.Bitmap("images/human/songzhongji.png");
-            var liutao = new createjs.Bitmap("images/human/liutao.png");
             wedday.alpha=0;wedday.textAlign="center";wedday.x=innerWidth/2;wedday.y=innerHeight/2+60;
             monthday.textAlign="center";monthday.x=innerWidth/2;monthday.y=innerHeight/2;monthday.alpha=0;
             songzhongji.regX=208;songzhongji.regY=200;songzhongji.x=innerWidth/2;songzhongji.y=innerHeight/2;songzhongji.alpha=0;songzhongji.scaleX=0;
