@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/createjs/easeljs-0.8.2.min.js"></script>
+    <script src="js/createjs/tweenjs-0.6.2.min.js"></script>
+
+    <style>
+        body{
+            margin:0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="kamui"></canvas>
+<script>
+    var canvas=document.getElementById("kamui");
+    canvas.width=innerWidth;canvas.height=innerHeight;
+    var stage=new createjs.Stage(canvas);
+    for(var i=0;i<50;i++){
+        for(var j=0;j<50;j++){
+            draw(innerWidth/50*i,innerHeight/50*j);
+        }
+    }
+    function draw(a,b){
+        var box=new createjs.Shape();
+        box.graphics.beginFill("darkred").drawRect(0,0,innerWidth/50,innerHeight/50);
+        box.x=a;box.y=b;
+        stage.addChild(box);
+    }
+    var k = stage.getNumChildren();
+    for(var i=0;i<k;i++){
+        createjs.Tween.get(stage.getChildAt(i)).to({x:Math.random()*innerWidth,y:Math.random()*innerHeight},5000);
+    }
+    createjs.Ticker.timingMode = createjs.Ticker.RAF;
+    createjs.Ticker.addEventListener("tick",stage);
+
+</script>
+</body>
+</html>

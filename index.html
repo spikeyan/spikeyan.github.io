@@ -32,6 +32,17 @@
             width:240px;
             height:200px;
         }
+        .tip{
+            text-align: center;
+            display: block;
+            float:left;
+            width:100%;
+            height:40px;
+            font-family: "Microsoft JhengHei";
+            font-size:25px;
+            color:wheat;
+            line-height: 50px;
+        }
         #fcanvas{
             z-index: 10;
         }
@@ -104,15 +115,19 @@
             border-radius: 20px;
             border:1px solid wheat;
             color:whitesmoke;
-            /*background-color: yellow;*/
+            opacity:0.2;
+            transition: transform 0.5s linear,opacity 0.5s linear;
+        }
+        .kcontent1:hover{
+            opacity:1;
         }
         .kcontent2{
             color:white;
             width:240px;
             height:32px;
             overflow: hidden;
-            font-family: monospace;
-            font-size:14px;
+            font-family: "Microsoft JhengHei";
+            font-size:12px;
             text-align: center;
             display: block;
             float: left;
@@ -122,8 +137,8 @@
             width:220px;
             height:28px;
             overflow: hidden;
-            font-family: monospace;
-            font-size:12px;
+            font-family: "Microsoft JhengHei";
+            font-size:10px;
             display: block;
             float: left;
             text-align: right;
@@ -139,6 +154,12 @@
             border:1px solid wheat;
             color:whitesmoke;
             position: relative;
+            opacity: 0.4;
+            transition: transform 0.5s linear,border 0.5s linear,border 0.5s linear,opacity 0.5s linear;
+        }
+        .kcontent4:hover{
+            border:1px solid #fcffc8;
+            opacity: 1;
         }
         .kcontent5{
             font-size:20px;
@@ -147,16 +168,18 @@
             float:left;
             margin-left: 10px;
             width:95%;
-            color:whitesmoke;
+            font-family: "Microsoft JhengHei";
         }
         .kcontent6{
-            color: #0016ff;
-            font-family: monospace;
+            color: wheat;
+            font-family: "Microsoft JhengHei";
+            font-size: 13px;
             text-align: right;
             width:100%;
             height:100%;
-            background-color: pink;
-            opacity:0.3;
+            /*background-color: pink;*/
+            transition: transform 0.5s linear,background-color 0.5s linear,border 0.5s linear;
+            /*opacity:0.3;*/
         }
         #west{
             margin-top:50px;
@@ -176,10 +199,15 @@
             margin-top:15px;
             display:block;
             float:left;
-            transition: transform 0.5s linear,background-color 0.5s linear;
+            opacity:0.4;
+            transition: transform 0.5s linear,background-color 0.5s linear,border 0.5s linear,opacity 0.5s linear;
+            color:wheat;
         }
         .spike1:hover{
             border: 1px solid #64fff8;
+            opacity: 1;
+            background-color: red;
+            color:black;
         }
         .spike1 img{
             width:80px;
@@ -190,7 +218,6 @@
             text-align: center;
             font-size: 14px;
             font-family: kamuiuse;
-            color:wheat;
             line-height: 9px;
         }
 
@@ -309,7 +336,6 @@
         window.addEventListener('resize', onWindowResize, false);
 
         var keynote=[true,true,true,true,true];
-        var d3key=false;
 
         //马的照片读取结束载入LOADING动画
         (function () {
@@ -334,7 +360,7 @@
                     still: [14, 27]
                 }
             });
-            var loadtext = new createjs.Text("Loading", "30px kamuiuse", "#ff7700");
+            var loadtext = new createjs.Text("Loading", "30px kamuiuse", "wheat");
             loadtext.textAlign = "center";
             var blackpage = new createjs.Shape();
             blackpage.graphics.beginFill("black").drawRect(0, 0, 3000, 2000).endFill();
@@ -438,6 +464,10 @@
 //                }
                 //抓取开放新闻API无图片的
                 if(arr.status=="000000"){
+                    var newstip=document.createElement("DIV");
+                    document.getElementById("kcontent").appendChild(newstip);
+                    newstip.setAttribute("class","tip");
+                    newstip.innerHTML="Ajax获取最新新闻";
                     for(i=0;i<arr.detail.length;i++){
                         var ntime=new Date();
                         var nmin;
@@ -465,6 +495,10 @@
                 }
 
                 if(arr.error_code==0&&url=="json/movie.txt"){
+                    newstip=document.createElement("DIV");
+                    document.getElementById("kcontent").appendChild(newstip);
+                    newstip.setAttribute("class","tip");
+                    newstip.innerHTML="Ajax获取影讯(还没有影讯API,没有链接)";
                     for(i=0;i<arr.result.length;i++){
                         node=document.createElement("DIV");
                         nodeimg=new Image();
@@ -485,6 +519,10 @@
                     }
                 }
                 if(arr.name=="Spike_work"){
+                    newstip=document.createElement("DIV");
+                    document.getElementById("kcontent").appendChild(newstip);
+                    newstip.setAttribute("class","tip");
+                    newstip.innerHTML="常用工具链接";
                     for(i=0;i<arr.objs.length;i++){
                         node=document.createElement("A");
                         nodeimg=new Image();
@@ -532,7 +570,7 @@
                 removeElement(document.getElementById("fcanvas"));
                 createjs.Ticker.addEventListener("tick", tick);
                 bcanvas.style.backgroundColor="black";
-                gonews();
+                gojob3d();
             }
         }//无事件函数结束
 
@@ -645,7 +683,7 @@
                 keynote=[true,true,true,true,false];
                 pp4.alpha=0;
                 kcondiv.alpha=0;
-                document.getElementById("kcontent").innerHTML="<div id='spikeyan'>前端开发<br/><br/>6年计算机行业经验<br/><br/>技术能力全面,有管理能力<br/><br/>项目产品经验丰富<br/><br/>学习能力突出,英文优秀<br/><br/>spike_yan@163.com<br/><br/>本页面采用原生JS搭配游戏引擎CREATEJS开发，算是一次新颖的尝试，正在找好的美工配合提供素材，后期有想法可以加入游戏的元素。MOVIE界面还没有对应的免费API，所以目前是本地的JSON数据，无链接。3D和WORK界面点击屏幕左右10%部分会弹出新页面，分别是WEBGL渲染和CSS渲染的3D界面。</div>";
+                document.getElementById("kcontent").innerHTML="<div id='spikeyan'>前端开发<br/><br/>6年计算机行业经验<br/><br/>技术能力全面,有管理能力<br/><br/>项目产品经验丰富<br/><br/>学习能力突出,英文优秀<br/><br/>spike_yan@163.com<br/><br/>本页面采用原生JS搭配游戏引擎CREATEJS开发,使用响应式布局,适配各种尺寸屏幕<br/><br/>3D和WORK界面点击屏幕左右10%会弹出有趣的页面哦!</div>";
                 bstage.addChild(pp4);
                 bstage.addChild(kcondiv);
                 createjs.Tween.get(pp4).to({alpha:1},500);

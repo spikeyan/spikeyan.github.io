@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>EaselJS: Filters Example</title>
+
+    <style>
+        canvas{
+            border:1px solid red;
+        }
+    </style>
+
+    <script src="js/createjs/easeljs-0.8.2.min.js"></script>
+    <!-- We also provide hosted minified versions of all CreateJS libraries.
+      http://code.createjs.com -->
+
+    <script id="editable">
+        var img;
+        var bmp;
+        var stage;
+        var angle;
+        var canvas;
+        var range;
+        var speed;
+
+        var x=0;
+        var y=0;
+
+        function init() {
+            img = new Image();
+            img.onload = handleImageLoad;
+            img.src = "009.jpg";
+        }
+
+        function handleImageLoad() {
+            canvas = document.getElementById("testCanvas");
+            stage = new createjs.Stage(canvas);
+            bmp = new createjs.Bitmap(img);
+            bmp.cache(0, 0, img.width, img.height);
+//        .set({y: (canvas.height - img.height)/2})
+            bmp.filters = [new createjs.BlurFilter(10, 10, 5)];
+            bmp.updateCache();
+
+            stage.addChild(bmp);
+            createjs.Ticker.addEventListener("tick", tick);
+        }
+
+        function tick(event) {
+
+
+            stage.update(event);
+        }
+
+    </script>
+</head>
+<body onload="init()">
+
+<canvas id="testCanvas" width="1100" height="800"></canvas>
+
+</body>
+</html>
