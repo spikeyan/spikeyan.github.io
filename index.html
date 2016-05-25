@@ -103,6 +103,13 @@
             /*此DIV要在手机中重做*/
             /*color:red;*/
         }
+        #jianli{
+            text-decoration: none;
+            color:pink;
+        }
+        #jianli:hover{
+            color:deeppink;
+        }
         .kcontent1{
             overflow: hidden;
             display:block;
@@ -114,7 +121,7 @@
             border-radius: 20px;
             border:1px solid wheat;
             color:whitesmoke;
-            opacity:0.2;
+            opacity:0.8;
             transition: transform 0.5s linear,opacity 0.5s linear;
         }
         .kcontent1:hover{
@@ -153,7 +160,7 @@
             border:1px solid wheat;
             color:whitesmoke;
             position: relative;
-            opacity: 0.4;
+            opacity: 0.8;
             transition: transform 0.5s linear,border 0.5s linear,border 0.5s linear,opacity 0.5s linear;
         }
         .kcontent4:hover{
@@ -198,7 +205,7 @@
             margin-top:15px;
             display:block;
             float:left;
-            opacity:0.4;
+            opacity:0.8;
             transition: transform 0.5s linear,background-color 0.5s linear,border 0.5s linear,opacity 0.5s linear;
             color:wheat;
         }
@@ -697,7 +704,7 @@
                 keynote=[true,true,true,true,false];
                 pp4.alpha=0;
                 kcondiv.alpha=0;
-                document.getElementById("kcontent").innerHTML="<div id='spikeyan'>前端开发<br/><br/>6年计算机行业经验<br/><br/>技术能力全面,有管理能力<br/><br/>项目产品经验丰富<br/><br/>学习能力突出,英文优秀<br/><br/>spike_yan@163.com<br/><br/>本页面采用原生JS搭配游戏引擎CREATEJS开发,使用响应式布局,适配各种尺寸屏幕<br/><br/>3D和WORK界面点击屏幕左右10%会弹出有趣的页面哦!</div>";
+                document.getElementById("kcontent").innerHTML="<div id='spikeyan'>前端开发 <a id='jianli' href='download\/resume_spike.docx'>点击下载我的简历</a><br/><br/>6年计算机行业经验<br/><br/>技术能力全面,有管理能力<br/><br/>项目产品经验丰富<br/><br/>学习能力突出,英文优秀<br/><br/>spike_yan@163.com<br/><br/>本页面采用原生JS搭配游戏引擎CREATEJS开发,使用响应式布局,适配各种尺寸屏幕<br/><br/>3D和WORK界面点击屏幕左右10%会弹出有趣的页面哦!</div>";
                 bstage.addChild(pp4);
                 bstage.addChild(kcondiv);
                 createjs.Tween.get(pp4).to({alpha:1},500);
