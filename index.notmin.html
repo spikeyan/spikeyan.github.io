@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+
+    <title>Spike</title>
+    <script src="js/createjs/easeljs-0.8.2.min.js"></script>
+    <script src="js/createjs/tweenjs-0.6.2.min.js"></script>
+    <style>
+        @font-face {
+            font-family: kamuifont;
+            src: url("font/INFROMAN.TTF") format("truetype");
+        }
+        @font-face {
+            font-family: kamuiuse;
+            src: url("font/comic.ttf") format("truetype");
+        }
+        body{
+            font-family: kamuiuse;
+            margin: 0;
+            padding: 0;
+        }
+        canvas{
+            display: block;
+            position: fixed;
+        }
+        div{
+            position: relative;
+        }
+        img{
+            width:240px;
+            height:200px;
+        }
+        .tip{
+            text-align: center;
+            display: block;
+            float:left;
+            width:100%;
+            font-family: "Microsoft JhengHei";
+            font-size:25px;
+            color:wheat;
+            line-height: 50px;
+        }
+        #fcanvas{
+            z-index: 10;
+        }
+        #bcanvas{
+            z-index:0;
+            /*background-color: blue;*/
+        }
+        .head{
+            width:100%;
+            height:40px;
+            background-color:black;
+            color: white;
+            float:left;
+            position: fixed;
+            z-index: 6;
+        }
+        .headleft{
+            /*background-color:black;*/
+            width:300px;
+            height:20px;
+            font-size: 20px;
+            margin-top:6px;
+            text-align: center;
+            float:left;
+            /*opacity:0;*/
+        }
+        .headright{
+            margin-right:30px;
+            float:right;
+            height:40px;
+            /*z-index:5;*/
+            /*opacity:0;*/
+        }
+        .headright>div{
+            font-size:15px;
+            float:right;
+            margin-top:0;
+            margin-right:0;
+            padding:10px 15px;
+            transition: transform 0.5s linear,background-color 0.5s linear;
+        }
+        .headright>div:hover {
+            background-color: #ff0015;
+            color: #000000;
+            cursor:pointer;
+        }
+        .content{
+            display: block;
+            width:80%;
+            margin-top:40px;
+            margin-left:10%;
+            /*padding:50px 100px;*/
+            /*background-color: red;*/
+            position:relative;
+            float:left;
+            /*opacity:0;*/
+            /*text-shadow: 5px 5px 5px #c0bfc6;*/
+            z-index: 5;
+            /*此DIV要在手机中重做*/
+            /*color:red;*/
+        }
+        #jianli{
+            text-decoration: none;
+            color:pink;
+        }
+        #jianli:hover{
+            color:deeppink;
+        }
+        .kcontent1{
+            overflow: hidden;
+            display:block;
+            float:left;
+            margin-right: 10px;
+            margin-top:10px;
+            width:240px;
+            height:260px;
+            border-radius: 20px;
+            border:1px solid wheat;
+            color:whitesmoke;
+            opacity:0.8;
+            transition: transform 0.5s linear,opacity 0.5s linear;
+        }
+        .kcontent1:hover{
+            opacity:1;
+        }
+        .kcontent2{
+            color:white;
+            width:240px;
+            height:32px;
+            overflow: hidden;
+            font-family: "Microsoft JhengHei";
+            font-size:12px;
+            text-align: center;
+            display: block;
+            float: left;
+        }
+        .kcontent3{
+            color: pink;
+            width:220px;
+            height:28px;
+            overflow: hidden;
+            font-family: "Microsoft JhengHei";
+            font-size:10px;
+            display: block;
+            float: left;
+            text-align: right;
+            line-height: 20px;
+        }
+        .kcontent4{
+            overflow: hidden;
+            display:block;
+            float:left;
+            margin-right: 10px;
+            margin-top:10px;
+            width:90%;
+            border:1px solid wheat;
+            color:whitesmoke;
+            position: relative;
+            opacity: 0.8;
+            transition: transform 0.5s linear,border 0.5s linear,border 0.5s linear,opacity 0.5s linear;
+        }
+        .kcontent4:hover{
+            border:1px solid #fcffc8;
+            opacity: 1;
+        }
+        .kcontent5{
+            font-size:20px;
+            overflow: hidden;
+            display:block;
+            float:left;
+            margin-left: 10px;
+            width:95%;
+            font-family: "Microsoft JhengHei";
+        }
+        .kcontent6{
+            color: wheat;
+            font-family: "Microsoft JhengHei";
+            font-size: 13px;
+            text-align: right;
+            width:100%;
+            height:100%;
+            /*background-color: pink;*/
+            transition: transform 0.5s linear,background-color 0.5s linear,border 0.5s linear;
+            /*opacity:0.3;*/
+        }
+        #west{
+            margin-top:50px;
+            overflow: visible;
+            font-family: kamuifont;
+            text-shadow: 5px 5px 5px #000000;
+            color: #c0bfc6;
+            font-size: 25px;
+        }
+        .spike1{
+            overflow: hidden;
+            border:1px solid wheat;
+            border-radius: 10px;
+            width:80px;
+            height:100px;
+            margin-right:15px;
+            margin-top:15px;
+            display:block;
+            float:left;
+            opacity:0.8;
+            transition: transform 0.5s linear,background-color 0.5s linear,border 0.5s linear,opacity 0.5s linear;
+            color:wheat;
+        }
+        .spike1:hover{
+            border: 1px solid #64fff8;
+            opacity: 1;
+            background-color: red;
+            color:black;
+        }
+        .spike1 img{
+            width:80px;
+            height:80px;
+        }
+        .spike1 div{
+            height:20px;
+            text-align: center;
+            font-size: 14px;
+            font-family: kamuiuse;
+            line-height: 9px;
+        }
+
+        #spikeyan{
+            font-family:"Microsoft JhengHei";
+            margin-top:50px;
+            color: #fff6b1;
+            font-size:22px;
+        }
+
+        @media screen and (max-width:700px) {
+            .headleft{
+                width: 0;
+                height:0;
+                visibility: hidden;
+
+            }
+            .headright{
+                margin-right: 10px;
+            }
+            .spike1{
+                margin-right:5px;
+            }
+            .kcontent4{
+                border:1px solid #fcffc8;
+                opacity: 1;
+            }
+            .kcontent1{
+                opacity:1;
+            }
+            .spike1{
+                opacity: 1;
+            }
+
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!--用于显示LOADING动画,屏幕前动画,提示操作等效果-->
+    <canvas id="fcanvas" width="100" height="100"></canvas>
+    <!--头部-->
+    <div class="head">
+        <div class="headleft" id="op1"><cite>Spike_yan</cite></div>
+        <div class="headright" id="op2">
+            <div id="about" onclick="goabout()">About</div>
+            <div id="work" onclick="gowork()">Work</div>
+            <div id="job3d" onclick="gojob3d()">3D</div>
+            <div id="movie" onclick="gomovie()">Movie</div>
+            <div id="news" onclick="gonews()">News</div>
+        </div>
+    </div>
+
+    <div class="content" id="kcontent">
+
+    </div>
+    <!-- bcanvas 整体背景画布 应用于场景的变换 背景动画的展示 照片比例在 横竖屏的切换下不准拉伸 要实现适应屏幕的判断语句，在屏幕小的情况下调整背景图位置的函数-->
+    <canvas id="bcanvas" width="100" height="100"></canvas>
+
+
+
+
+
+    <script>
+        //前端CANVAS预定义 - fstage
+        var fcanvas=document.getElementById("fcanvas");
+        var fstage=new createjs.Stage(fcanvas);
+
+        var bcanvas=document.getElementById("bcanvas");
+        var bstage=new createjs.Stage(bcanvas);
+
+        //定义开场人物图片
+        var songzhongji = new createjs.Bitmap("images/human/songzhongji.png");
+        var liutao = new createjs.Bitmap("images/human/liutao.png");
+        //定义扑克牌图片
+        var puke = new Image();
+        puke.src="sprite/CardDeck.png";
+
+        //新定义的每个场景的图片
+        var pp0pimg=new Image();
+        var pp0=new createjs.Bitmap();
+        pp0pimg.onload=pp0pimgload;
+        function pp0pimgload(){pp0.image=pp0pimg;pp0.regX=pp0pimg.width/2;}
+        pp0pimg.src="images/show/01.jpg";
+
+        var pp1pimg=new Image();
+        var pp1=new createjs.Bitmap();
+        pp1pimg.onload=pp1pimgload;
+        function pp1pimgload(){pp1.image=pp1pimg;pp1.regX=pp1pimg.width/2;}
+        pp1pimg.src="images/show/02.jpg";
+
+        var pp2pimg=new Image();
+        var pp2=new createjs.Bitmap();
+        pp2pimg.onload=pp2pimgload;
+        function pp2pimgload(){pp2.image=pp2pimg;pp2.regX=pp2pimg.width/2;}
+        pp2pimg.src="images/show/03.jpg";
+
+        var pp3pimg=new Image();
+        var pp3=new createjs.Bitmap();
+        pp3pimg.onload=pp3pimgload;
+        function pp3pimgload(){pp3.image=pp3pimg;pp3.regX=pp3pimg.width/2;}
+        pp3pimg.src="images/show/04.jpg";
+
+        var pp4pimg=new Image();
+        var pp4=new createjs.Bitmap();
+        pp4pimg.onload=pp4pimgload;
+        function pp4pimgload(){pp4.image=pp4pimg;pp4.regX=pp4pimg.width/2;}
+        pp4pimg.src="images/show/05.jpg";
+
+        //定义树叶及容器
+
+        var pp=new createjs.Container();
+        bstage.addChild(pp);
+
+        var pic1img=new Image();
+        var leaf=new createjs.Bitmap();
+        pic1img.onload=pic1imgload;
+        function pic1imgload(){leaf.image=pic1img;}
+        pic1img.src="images/leaf/leaf03.png";
+
+        var pic2img=new Image();
+        pic2img.src="images/leaf/leaf04.png";
+
+        //定义kcontent div为可控元素
+        var kcondiv=new createjs.DOMElement(document.getElementById("kcontent"));
+
+        //在WINDOW中绑定屏幕改变事件
+        window.addEventListener('resize', onWindowResize, false);
+
+        var keynote=[true,true,true,true,true];
+
+        //马的照片读取结束载入LOADING动画
+        (function () {
+            var horsepic = new Image();
+            horsepic.onload = horseload;
+            function horseload() {
+                webload();
+                ppcss();
+            }
+            horsepic.src = "sprite/trojanHorse.png";
+        })();
+
+        //LOADING动画函数
+        function webload() {
+            fcanvas.width =bcanvas.width= innerWidth;
+            fcanvas.height =bcanvas.height=innerHeight;
+            var spriteSheet = new createjs.SpriteSheet({
+                framerate: 30,
+                "images": ["sprite/trojanHorse.png"],
+                "frames": {"regX": 112, "regY": 150, "height": 152, "width": 224},
+                "animations": {
+                    still: [14, 27]
+                }
+            });
+            var loadtext = new createjs.Text("Loading", "30px kamuiuse", "wheat");
+            loadtext.textAlign = "center";
+            var blackpage = new createjs.Shape();
+            blackpage.graphics.beginFill("black").drawRect(0, 0, 3000, 2000).endFill();
+            var grant = new createjs.Sprite(spriteSheet, "still");
+            loadtext.x = grant.x = innerWidth / 2;
+            grant.y = innerHeight / 2;
+            loadtext.y = innerHeight / 2 + 10;
+            fstage.addChild(blackpage);
+            fstage.addChild(grant);
+            fstage.addChild(loadtext);
+
+            createjs.Ticker.timingMode = createjs.Ticker.RAF;
+            createjs.Ticker.addEventListener("tick", fstage);//这里设置了FSTAGE的刷新 , 在MAIN人物动画结束后移除
+
+            window.onload = function () {
+                loadtext.text = "OK,touch to enter";
+                fcanvas.onclick = function () {
+                    fcanvas.onclick=null;
+                    createjs.Tween.get(grant).to({x: window.innerWidth + 150}, 600);
+                    createjs.Tween.get(loadtext).to({x:-300}, 600);
+                    createjs.Tween.get(blackpage).to({alpha:0},1000).call(main);//外花布黑屏结束,调用main
+                }
+            }
+        }
+
+        function tick(){
+            bstage.update();
+        }
+        //屏幕改变函数
+        function onWindowResize(){
+            fcanvas.width=bcanvas.width=innerWidth;
+            fcanvas.height=bcanvas.height=innerHeight;
+            ppcss();
+        }
+
+        //背景图片改变函数
+        function ppcss(){
+            pp0.x=window.innerWidth/2;
+            if(window.innerWidth>pp0pimg.width){pp0.scaleX=window.innerWidth/pp0pimg.width;}
+            if(window.innerHeight>pp0pimg.height){pp0.scaleY=window.innerHeight/pp0pimg.height;}
+
+            pp1.x=window.innerWidth/2;
+            if(window.innerWidth>pp1pimg.width){pp1.scaleX=window.innerWidth/pp1pimg.width;}
+            if(window.innerHeight>pp1pimg.height){pp1.scaleY=window.innerHeight/pp1pimg.height;}
+
+            pp2.x=window.innerWidth/2;
+            if(window.innerWidth>pp2pimg.width){pp2.scaleX=window.innerWidth/pp2pimg.width;}
+            if(window.innerHeight>pp2pimg.height){pp2.scaleY=window.innerHeight/pp2pimg.height;}
+
+            pp3.x=window.innerWidth/2;
+            if(window.innerWidth>pp3pimg.width){pp3.scaleX=window.innerWidth/pp3pimg.width;}
+            if(window.innerHeight>pp3pimg.height){pp3.scaleY=window.innerHeight/pp3pimg.height;}
+
+            pp4.x=window.innerWidth/2;
+            if(window.innerWidth>pp4pimg.width){pp4.scaleX=window.innerWidth/pp4pimg.width;}
+            if(window.innerHeight>pp4pimg.height){pp4.scaleY=window.innerHeight/pp4pimg.height;}
+        }
+
+        //删除元素节点函数
+        function removeElement(_element){
+            var _parentElement = _element.parentNode;
+            if(_parentElement){
+                _parentElement.removeChild(_element);
+            }
+        }
+
+        //AJAX获取JSON函数
+        function returnjsonuseajax(url){
+            var xmlhttp = new XMLHttpRequest();
+            var xurl=url;
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var myArr = JSON.parse(xmlhttp.responseText);
+                    output(myArr);
+                }
+            };
+            xmlhttp.open("GET",xurl, true);
+            xmlhttp.send();
+            function output(arr){
+//                本地新闻JSON函数
+//                if(arr.error_code==0&&url=="json/news.txt"){
+//                    for(var i=0;i<arr.result.ps;i++){
+//                        var node=document.createElement("a");
+//                        var nodeimg=new Image();
+//                        nodeimg.alt="图像未能载入";
+//                        nodeimg.src=arr.result.list[i].firstImg;
+//                        document.getElementById("kcontent").appendChild(node);
+//                        node.setAttribute("class","kcontent1");
+//                        node.appendChild(nodeimg);
+//                        var nodetitle=document.createElement("Div");
+//                        nodetitle.setAttribute("class","kcontent2");
+//                        nodetitle.innerHTML=arr.result.list[i].title;
+//                        node.appendChild(nodetitle);
+//                        var nodefrom=document.createElement("Div");
+//                        nodefrom.setAttribute("class","kcontent3");
+//                        nodefrom.innerHTML="来源:"+arr.result.list[i].source;
+//                        node.appendChild(nodefrom);
+//                        node.href=arr.result.list[i].url;
+//                        node.target="_blank";
+//                    }
+//                }
+                //抓取开放新闻API无图片的
+                if(arr.status=="000000"){
+                    var newstip=document.createElement("DIV");
+                    document.getElementById("kcontent").appendChild(newstip);
+                    newstip.setAttribute("class","tip");
+                    newstip.innerHTML="Ajax获取最新新闻";
+                    for(i=0;i<arr.detail.length;i++){
+                        var ntime=new Date();
+                        var nmin;
+                        ntime.setTime(arr.detail[i].behot_time);
+                        if(ntime.getMinutes()<10){
+                            nmin="0"+ntime.getMinutes().toString();
+                        }else{
+                            nmin=ntime.getMinutes();
+                        }
+                        node=document.createElement("A");
+                        document.getElementById("kcontent").appendChild(node);
+                        node.setAttribute("class","kcontent4");
+                        nodetitle=document.createElement("Div");
+                        nodetitle.setAttribute("class","kcontent5");
+                        nodetitle.innerHTML=arr.detail[i].title;
+                        node.appendChild(nodetitle);
+                        nodefrom=document.createElement("Div");
+                        nodefrom.setAttribute("class","kcontent6");
+                        nodefrom.innerHTML=ntime.getFullYear()+"."+(ntime.getMonth()+1)+"."+ntime.getDate()+"  "+ntime.getHours()+":"+nmin+ " "+arr.detail[i].source;
+                        node.appendChild(nodefrom);
+                        node.href=arr.detail[i].article_url;
+                        node.target="_blank";
+
+                    }
+                }
+
+                if(arr.error_code==0&&url=="json/movie.txt"){
+                    newstip=document.createElement("DIV");
+                    document.getElementById("kcontent").appendChild(newstip);
+                    newstip.setAttribute("class","tip");
+                    newstip.innerHTML="Ajax获取影讯(还没有影讯API,没有链接)";
+                    for(i=0;i<arr.result.length;i++){
+                        node=document.createElement("DIV");
+                        nodeimg=new Image();
+                        nodeimg.alt="图像未能载入";
+                        nodeimg.src=arr.result[i].poster;
+                        document.getElementById("kcontent").appendChild(node);
+                        node.setAttribute("class","kcontent1");
+                        node.appendChild(nodeimg);
+                        nodetitle=document.createElement("Div");
+                        nodetitle.setAttribute("class","kcontent2");
+                        nodetitle.innerHTML="主演:"+arr.result[i].actors;
+                        node.appendChild(nodetitle);
+                        nodefrom=document.createElement("Div");
+                        nodefrom.setAttribute("class","kcontent3");
+                        nodefrom.innerHTML="电影:"+arr.result[i].title+"  评分"+arr.result[i].rating;
+                        node.appendChild(nodefrom);
+
+                    }
+                }
+                if(arr.name=="Spike_work"){
+                    newstip=document.createElement("DIV");
+                    document.getElementById("kcontent").appendChild(newstip);
+                    newstip.setAttribute("class","tip");
+                    newstip.innerHTML="常用工具链接";
+                    for(i=0;i<arr.objs.length;i++){
+                        node=document.createElement("A");
+                        nodeimg=new Image();
+                        nodeimg.src=arr.objs[i].img;
+                        document.getElementById("kcontent").appendChild(node);
+                        node.appendChild(nodeimg);
+                        node.setAttribute("class","spike1");
+                        nodetitle=document.createElement("Div");
+                        nodetitle.innerHTML=arr.objs[i].name;
+                        node.appendChild(nodetitle);
+                        node.href=arr.objs[i].src;
+                        node.target="_blank";
+                    }
+                }
+            }
+        }
+
+        //首页动画函数
+        function main(){
+            fstage.removeAllChildren();
+            var showdate=new Date();
+            var monthday=new createjs.Text((showdate.getMonth()+1)+" 月 "+showdate.getDate().toString()+" 号", "50px kamuiuse", "black");
+            var wedday=new createjs.Text("","50px kamuiuse", "black");
+            (function(){if(showdate.getDay()==1){wedday.text= "礼拜一!"}if(showdate.getDay()==2){wedday.text= "加油 星期二"}if(showdate.getDay()==3){wedday.text= "加油 星期三"}if(showdate.getDay()==4){wedday.text= "坚持 星期四"}if(showdate.getDay()==5){wedday.text= "YEAH 星期五"}if(showdate.getDay()==6){wedday.text= "周末拉 周六"}if(showdate.getDay()==0){wedday.text= "礼拜天"}})();
+            wedday.alpha=0;wedday.textAlign="center";wedday.x=innerWidth/2;wedday.y=innerHeight/2+60;
+            monthday.textAlign="center";monthday.x=innerWidth/2;monthday.y=innerHeight/2;monthday.alpha=0;
+            songzhongji.regX=208;songzhongji.regY=200;songzhongji.x=innerWidth/2;songzhongji.y=innerHeight/2;songzhongji.alpha=0;songzhongji.scaleX=0;
+            liutao.regX=185;liutao.regY=223;liutao.x=innerWidth/2;liutao.y=innerHeight/2;liutao.alpha=0;liutao.scaleX=0;
+            fstage.addChild(monthday);
+            fstage.addChild(wedday);
+            if(Math.random()>0.5){
+                fstage.addChild(songzhongji);
+                createjs.Tween.get(songzhongji).wait(600).to({scaleX:1,alpha:1},300).wait(500).to({scaleX:0,alpha:0},300).call(s1over);
+                createjs.Tween.get(monthday).to({alpha:1},400).to({alpha:0},200);
+                createjs.Tween.get(wedday).to({alpha:1},400).to({alpha:0},200);
+            }else{
+                fstage.addChild(liutao);
+                createjs.Tween.get(liutao).wait(600).to({scaleX:1,alpha:1},300).wait(500).to({scaleX:0,alpha:0},300).call(s1over);
+                createjs.Tween.get(monthday).to({alpha:1},400).to({alpha:0},200);
+                createjs.Tween.get(wedday).to({alpha:1},400).to({alpha:0},200);
+            }
+            function s1over(){
+                fstage.removeAllChildren();
+                createjs.Ticker.removeEventListener("tick", fstage);
+                removeElement(document.getElementById("fcanvas"));
+                createjs.Ticker.addEventListener("tick", tick);
+                bcanvas.style.backgroundColor="black";
+                gojob3d();
+            }
+        }//无事件函数结束
+
+        //删除加载内容函数,删除KCONTENT的内容防止重复加载
+        function cleardiv(){
+            document.getElementById("kcontent").innerHTML="";
+            bstage.removeAllEventListeners();
+            pp.removeAllChildren();
+        }
+
+
+        //进入新闻界面函数
+        function gonews(){
+            //判断是否重复使用按钮
+            if(keynote[0]){
+                cleardiv();
+                bstage.removeAllChildren();
+                keynote=[false,true,true,true,true];
+                pp0.alpha=0;
+                kcondiv.alpha=0;
+                bstage.addChild(pp0);
+                bstage.addChild(kcondiv);
+                createjs.Tween.get(pp0).to({alpha:1},500);
+                createjs.Tween.get(kcondiv).wait(400).to({alpha:1},500);
+                returnjsonuseajax("http://api.1-blog.com/biz/bizserver/news/list.do");
+            }
+        }
+
+        //进入电影界面函数
+        function gomovie(){
+            if(keynote[1]){
+                cleardiv();
+                bstage.removeAllChildren();
+                keynote=[true,false,true,true,true];
+                pp1.alpha=0;
+                kcondiv.alpha=0;
+                bstage.addChild(pp1);
+                bstage.addChild(kcondiv);
+                createjs.Tween.get(pp1).to({alpha:1},500);
+                createjs.Tween.get(kcondiv).wait(400).to({alpha:1},500);
+                returnjsonuseajax("json/movie.txt");
+            }
+        }
+
+        //进入3D界面函数
+         function gojob3d(){
+            if(keynote[2]){
+                cleardiv();
+                bstage.removeAllChildren();
+                keynote=[true,true,false,true,true];
+
+                pp2.alpha=0;
+                kcondiv.alpha=0;
+                document.getElementById("kcontent").innerHTML="<div id='west'>From Westminster Abbey's gravestone.<br/><br/>When I was young and free and my imagination had no limits, I dreamed of changing the world. As I grew older and wiser, I discovered the world would not change,so I shortened my sights somewhat and decided to change only my country.<br/><br/>But it, too, seemed immovable.<br/><br/>As I grew into my twilight years, in one last desperate attempt, I settled for changing only my family, those closest to me, but alas, they would have none of it.<br/><br/>And now as I lie on my deathbed, I suddenly realize: If I had only changed my self first, then by example I would have changed my family.<br/><br/>From their inspiration and encouragement, I would then have been able to better my country and, who knows, I may have even changed the world.<br/><br/><div>";
+
+                bstage.addChild(pp2);
+                bstage.addChild(kcondiv);
+                bstage.addChild(pp);
+                createjs.Tween.get(pp2).to({alpha:1},500);
+                createjs.Tween.get(kcondiv).wait(400).to({alpha:1},1000);
+                createjs.Tween.get(pp2,{loop:true}).to({y:30},10000).to({y:0},10000);
+                if(Math.random()>0.5){leaf.image=pic2img;}else{leaf.image=pic1img;}
+                for(var i=0;i<window.innerWidth*window.innerHeight/5000;i++){
+                    leaf.regX=Math.random()*window.innerWidth;
+                    leaf.regY=Math.random()*window.innerHeight;
+                    var lea=leaf.clone();
+                    lea.alpha=1;
+                    lea.x=Math.random()*window.innerWidth;
+                    lea.y=Math.random()*window.innerHeight;
+                    lea.rotation=Math.random()*1080;
+                    createjs.Tween.get(lea).to({alpha:0,rotation:0,x:window.innerWidth/2,y:window.innerHeight/2},Math.random()*4000);
+                    pp.addChild(lea);
+                }
+                bstage.addEventListener("click",openskybox);
+                function openskybox(){window.open("skybox.html");}
+            }
+        }
+
+        //进入WORK界面函数
+        function gowork(){
+            if(keynote[3]){
+                cleardiv();
+                bstage.removeAllChildren();
+                keynote=[true,true,true,false,true];
+                pp3.alpha=0;
+                kcondiv.alpha=0;
+                bstage.addChild(pp3);
+                bstage.addChild(kcondiv);
+                createjs.Tween.get(pp3).to({alpha:1},500);
+                createjs.Tween.get(kcondiv).wait(400).to({alpha:1},500);
+                returnjsonuseajax("json/package.json");
+                bstage.addEventListener("click",openchem);
+                function openchem(){window.open("chem.html");}
+                var techpic=[];
+                for(var i=0;i<2;i++) {
+                    techpic[i] = new createjs.Shape();
+                    techpic[i].graphics.setStrokeStyle(Math.random()*5+2).beginStroke("white").drawPolyStar(0, 0, 40+Math.random()*40, Math.random()*3+4|0, 0.6, -90);
+                    bstage.addChild(techpic[i]);
+                }
+                techloop0();techloop1();
+                function techloop0(){if(!keynote[3]){createjs.Tween.get(techpic[0]).to({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,rotation:Math.random()*1080},Math.random()*5000+5000).call(techloop0);}}
+                function techloop1(){if(!keynote[3]){createjs.Tween.get(techpic[1]).to({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,rotation:Math.random()*1080},Math.random()*5000+5000).call(techloop1);}}
+            }
+        }
+
+        //进入ABOUT界面函数
+        function goabout(){
+            if(keynote[4]){
+                cleardiv();
+                bstage.removeAllChildren();
+                keynote=[true,true,true,true,false];
+                pp4.alpha=0;
+                kcondiv.alpha=0;
+                document.getElementById("kcontent").innerHTML="<div id='spikeyan'>前端开发 <a id='jianli' href='download\/resume_spike.docx'>点击下载我的简历</a><br/><br/>6年计算机行业经验<br/><br/>技术能力全面,有管理能力<br/><br/>项目产品经验丰富<br/><br/>学习能力突出,英文优秀<br/><br/>spike_yan@163.com<br/><br/>本页面采用原生JS搭配游戏引擎CREATEJS开发,使用响应式布局,适配各种尺寸屏幕<br/><br/>3D和WORK界面点击屏幕左右10%会弹出有趣的页面哦!</div>";
+                bstage.addChild(pp4);
+                bstage.addChild(kcondiv);
+                createjs.Tween.get(pp4).to({alpha:1},500);
+                createjs.Tween.get(kcondiv).wait(400).to({alpha:1},500);
+                techloop();
+
+                function techloop(){
+                    if(!keynote[4]){
+                    var cardsprite = new createjs.SpriteSheet({
+                    "images": [puke],
+                    "frames": {"regX": 0, "regY": 0, "height": 96, "width": 68},
+                    "animations": {
+                        cardgo: [Math.random()*55]
+                    }
+                });
+                    var grantgo = new createjs.Sprite(cardsprite, "cardgo");
+                    var numc=bstage.getNumChildren();
+                    grantgo.x=bstage.getChildAt(numc-1).x;grantgo.y=bstage.getChildAt(numc-1).y;grantgo.rotation=bstage.getChildAt(numc-1).rotation;
+                    bstage.addChild(grantgo);
+                    createjs.Tween.get(grantgo).to({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,rotation:Math.random()*1080},Math.random()*5000+5000).call(techloop);
+                }
+
+            }
+        }}
+
+    </script>
+</body>
+</html>
