@@ -1,40 +1,42 @@
 /**
  * Created by akke on 2016/4/20.
  */
-    var pr=[
-    "pic/stage/entermap.png",
-    "pic/g1/jiandao.jpg",
-    "pic/g1/shitou.jpg",
-    "pic/g1/bu.jpg",
-    "pic/g1/enemy1.jpg",
-    "pic/g1/enemy2.jpg",
-    "pic/g1/enemy3.jpg",
-    "pic/g1/enemy4.jpg",
-    "pic/g1/enemy5.jpg",
-    "pic/g3/g3_dragon.jpg",
-    "pic/g3/g3_dragonbaby.jpg",
-    "pic/g3/g3_attack.jpg",
-    "pic/g4/g4_background.jpg",
-    "pic/g4/g4_kuroro.png",
-    "pic/g5/ahua.jpg",
-    "pic/g6/g6_stage.jpg",
-    "pic/g6/g6_paike.png",
-    "pic/g7/enemy1.jpg",
-    "pic/g7/enemy2.jpg",
-    "pic/g7/enemy3.jpg",
-    "pic/g7/enemy4.jpg",
-    "pic/g8/g8_stage.jpg",
-    "pic/g8/g8_captain.png",
-    "pic/g9/g9_stage.jpg",
-    "pic/g9/g9_gang.png",
-    "pic/g10/g10_stage.jpg"
+    function preload() {
+    var pr = [
+        "pic/stage/entermap.png",
+        "pic/g1/jiandao.jpg",
+        "pic/g1/shitou.jpg",
+        "pic/g1/bu.jpg",
+        "pic/g1/enemy1.jpg",
+        "pic/g1/enemy2.jpg",
+        "pic/g1/enemy3.jpg",
+        "pic/g1/enemy4.jpg",
+        "pic/g1/enemy5.jpg",
+        "pic/g3/g3_dragon.jpg",
+        "pic/g3/g3_dragonbaby.jpg",
+        "pic/g3/g3_attack.jpg",
+        "pic/g4/g4_background.jpg",
+        "pic/g4/g4_kuroro.png",
+        "pic/g5/ahua.jpg",
+        "pic/g6/g6_stage.jpg",
+        "pic/g6/g6_paike.png",
+        "pic/g7/enemy1.jpg",
+        "pic/g7/enemy2.jpg",
+        "pic/g7/enemy3.jpg",
+        "pic/g7/enemy4.jpg",
+        "pic/g8/g8_stage.jpg",
+        "pic/g8/g8_captain.png",
+        "pic/g9/g9_stage.jpg",
+        "pic/g9/g9_gang.png",
+        "pic/g10/g10_stage.jpg"
     ];
-    var preload=new Array();
-    for(var pri in pr){
+    var preload = new Array();
+    for (var pri in pr) {
         console.log(pr[pri]);
-        preload[pri]=new Image();
-        preload[pri].src=pr[pri];
+        preload[pri] = new Image();
+        preload[pri].src = pr[pri];
     }
+}
 
 
 var s1 = new createjs.Stage("kamui");
@@ -135,6 +137,7 @@ function kamuiweb(){
 
 
 function logo(){
+    preload();
     s1.addChild(m1);
     m1.alpha=0;
     m1.addEventListener("click",goplay);
