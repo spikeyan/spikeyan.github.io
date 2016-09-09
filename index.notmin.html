@@ -290,6 +290,16 @@
 
 
     <script>
+        //马的照片读取结束载入LOADING动画
+        (function () {
+            var horsepic = new Image();
+            horsepic.onload = horseload;
+            function horseload() {
+                webload();
+                ppcss();
+            }
+            horsepic.src = "sprite/trojanHorse.png";
+        })();
         //前端CANVAS预定义 - fstage
         var fcanvas=document.getElementById("fcanvas");
         var fstage=new createjs.Stage(fcanvas);
@@ -357,16 +367,7 @@
 
         var keynote=[true,true,true,true,true];
 
-        //马的照片读取结束载入LOADING动画
-        (function () {
-            var horsepic = new Image();
-            horsepic.onload = horseload;
-            function horseload() {
-                webload();
-                ppcss();
-            }
-            horsepic.src = "sprite/trojanHorse.png";
-        })();
+
 
         //LOADING动画函数
         function webload() {
