@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create_work</title>
+    <script src="easeljs-0.8.2.min.js"></script>
+    <!--<script src="tweenjs-0.6.2.min.js"></script>-->
+    <link rel="stylesheet" href="type.css" type="text/css">
+
+
+</head>
+<body onload="go()">
+    <div class="cr_body">
+        <div class="cr_canvas">
+            <canvas id="game" width="1100" height="750"></canvas>
+        </div>
+    </div>
+    <button onclick="go1()">an</button>
+
+    <script>
+        var stage= new createjs.Stage("game");
+        var image= new createjs.Bitmap("gl_2.jpg");
+        var text = new createjs.Text("Hello World", "30px Arial", "#ff7700");
+        text.textBaseline = "top";
+        stage.addChild(image);
+        stage.addChild(text);
+
+        function go(){
+            stage.update();
+        }
+        function go1(){
+            stage.removeChild(image);
+            stage.update();
+        }
+
+    </script>
+
+</body>
+</html>

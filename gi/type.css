@@ -1,0 +1,30 @@
+.cr_body{
+           width:80%;
+           height:800px;
+           margin-left: auto;
+           margin-right: auto;
+           margin-top: 50px;
+           /*background-color: #ccff9d;*/
+       }
+.cr_canvas{
+    width:1100px;
+    height:700px;
+    margin-left:auto;
+    margin-right: auto;
+    padding-top: 10px;
+    /*background-color: #d2ffb6;*/
+    /*opacity: 0.5;*/
+}
+body{
+    margin: 0 0;
+    padding: 0 0;
+}
+#game{
+    background-color: #95ff9f;
+}
+
+/*.btn{*/
+    /*height: 50px;*/
+    /*width: 200px;*/
+    /*font-size: 40px;*/
+/*}*/

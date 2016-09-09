@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="kamui" style="text-align: center">welcome to kamui page</p>
+<script>
+    var employees = [
+        {"firstName":"John", "lastName":"Doe"},
+        {"firstName":"Anna", "lastName":"Smith"},
+        {"firstName":"Peter","lastName": "Jones"}
+    ];
+    document.getElementById("kamui").innerHTML=employees[0].firstName+employees[0].lastName;
+
+    var myArray = [
+        {
+            "display": "JavaScript Tutorial",
+            "url": "http://www.w3schools.com/js/default.asp"
+        },
+        {
+            "display": "HTML Tutorial",
+            "url": "http://www.w3schools.com/html/default.asp"
+        },
+        {
+            "display": "CSS Tutorial",
+            "url": "http://www.w3schools.com/css/default.asp"
+        }
+    ];
+
+    myFunction(myArray);
+
+    function myFunction(arr) {
+        var out ="";
+        var i;
+        for(i = 0; i < arr.length; i++) {
+            out += '<a href="' + arr[i].url + '">' +
+                    arr[i].display + '</a><br>';
+        }
+        document.getElementById("kamui").innerHTML = out;
+    }
+</script>
+</body>
+</html>
