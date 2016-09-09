@@ -21,34 +21,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gi/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44823664">
-              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+            <state vertical-scroll-proportion="-4.885714">
+              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gi/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1377" column="0" selection-start-line="1377" selection-start-column="0" selection-end-line="1377" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.99562365">
+              <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
               <folding>
-                <element signature="n#!!block;n#openbook#0" expanded="false" />
-                <element signature="e#3034#3992#0" expanded="false" />
-                <element signature="n#!!block;n#kamuiweb#0" expanded="false" />
-                <element signature="n#!!block;n#logo#0" expanded="false" />
-                <element signature="n#!!block;n#wel#0" expanded="false" />
-                <element signature="n#!!block;n#goplay#0" expanded="false" />
-                <element signature="n#!!block;n#main#0" expanded="false" />
-                <element signature="n#!!block;n#heroSelect#0" expanded="false" />
-                <element signature="n#!!block;n#continuegame#0" expanded="false" />
-                <element signature="n#!!block;n#heroSelectmenu#0" expanded="false" />
-                <element signature="n#!!block;n#startgame#0" expanded="false" />
-                <element signature="n#!!block;n#entrance#0" expanded="false" />
                 <element signature="n#!!block;n#will#0" expanded="false" />
                 <element signature="n#!!block;n#dragon#0" expanded="false" />
                 <element signature="n#!!block;n#theif#0" expanded="false" />
@@ -143,6 +131,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -239,7 +228,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -371,6 +359,32 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/gi/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gi/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1377" column="0" selection-start-line="1377" selection-start-column="0" selection-end-line="1377" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#will#0" expanded="false" />
+            <element signature="n#!!block;n#dragon#0" expanded="false" />
+            <element signature="n#!!block;n#theif#0" expanded="false" />
+            <element signature="n#!!block;n#love#0" expanded="false" />
+            <element signature="n#!!block;n#cardx#0" expanded="false" />
+            <element signature="n#!!block;n#battle#0" expanded="false" />
+            <element signature="n#!!block;n#port#0" expanded="false" />
+            <element signature="n#!!block;n#magic#0" expanded="false" />
+            <element signature="n#!!block;n#boss#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/createjs/easeljs-0.8.2.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -580,7 +594,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="9.4653015">
           <caret line="320" column="36" selection-start-line="320" selection-start-column="36" selection-end-line="320" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -589,23 +602,19 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gi/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.885714">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gi/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1377" column="0" selection-start-line="1377" selection-start-column="0" selection-end-line="1377" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.99562365">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
           <folding>
-            <element signature="n#!!block;n#openbook#0" expanded="false" />
-            <element signature="e#3034#3992#0" expanded="false" />
-            <element signature="n#!!block;n#kamuiweb#0" expanded="false" />
-            <element signature="n#!!block;n#logo#0" expanded="false" />
-            <element signature="n#!!block;n#wel#0" expanded="false" />
-            <element signature="n#!!block;n#goplay#0" expanded="false" />
-            <element signature="n#!!block;n#main#0" expanded="false" />
-            <element signature="n#!!block;n#heroSelect#0" expanded="false" />
-            <element signature="n#!!block;n#continuegame#0" expanded="false" />
-            <element signature="n#!!block;n#heroSelectmenu#0" expanded="false" />
-            <element signature="n#!!block;n#startgame#0" expanded="false" />
-            <element signature="n#!!block;n#entrance#0" expanded="false" />
             <element signature="n#!!block;n#will#0" expanded="false" />
             <element signature="n#!!block;n#dragon#0" expanded="false" />
             <element signature="n#!!block;n#theif#0" expanded="false" />
@@ -616,14 +625,6 @@
             <element signature="n#!!block;n#magic#0" expanded="false" />
             <element signature="n#!!block;n#boss#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gi/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44823664">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
