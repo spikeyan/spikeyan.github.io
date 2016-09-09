@@ -1,6 +1,13 @@
 /**
  * Created by akke on 2016/4/20.
  */
+function preload() {
+    for (prei = 0; prei < preload.arguments.length; pre++) {
+        images[prei] = new Image()
+        images[prei].src = preload.arguments[prei]
+    }
+}
+
 var s1 = new createjs.Stage("kamui");
 var m1 = new createjs.Bitmap("gl_2.jpg");
 var text = new createjs.Text("GREED ISLAND", "80px Arial", "#3A73FF");
@@ -399,7 +406,34 @@ function startgame(){
 
 
 }
-
+preload(
+    "pic/stage/entermap.png",
+    "pic/g1/jiandao.jpg",
+    "pic/g1/shitou.jpg",
+    "pic/g1/bu.jpg",
+    "pic/g1/enemy1.jpg",
+    "pic/g1/enemy2.jpg",
+    "pic/g1/enemy3.jpg",
+    "pic/g1/enemy4.jpg",
+    "pic/g1/enemy5.jpg",
+    "pic/g3/g3_dragon.jpg",
+    "pic/g3/g3_dragonbaby.jpg",
+    "pic/g3/g3_attack.jpg",
+    "pic/g4/g4_background.jpg",
+    "pic/g4/g4_kuroro.png",
+    "pic/g5/ahua.jpg",
+    "pic/g6/g6_stage.jpg",
+    "pic/g6/g6_paike.png",
+    "pic/g7/enemy1.jpg",
+    "pic/g7/enemy2.jpg",
+    "pic/g7/enemy3.jpg",
+    "pic/g7/enemy4.jpg",
+    "pic/g8/g8_stage.jpg",
+    "pic/g8/g8_captain.png",
+    "pic/g9/g9_stage.jpg",
+    "pic/g9/g9_gang.png",
+    "pic/g10/g10_stage.jpg"
+);
 function entrance(){
     selectheropic.x=10;selectheropic.y=590;s1.addChild(selectheropic);
     var g1_text1=new createjs.Text("成功晋级下一场！", "60px Arial", "#ff7700");
