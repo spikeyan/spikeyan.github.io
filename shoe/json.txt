@@ -1,0 +1,1 @@
+{"user":"https://spikeyan.github.io/shoe/user.png","product":"https://spikeyan.github.io/shoe/product.png","top":"https://spikeyan.github.io/shoe/top.png","left":"https://spikeyan.github.io/shoe/left.png","right":"https://spikeyan.github.io/shoe/right.png","back":"https://spikeyan.github.io/shoe/back.png","bottom":"https://spikeyan.github.io/shoe/bottom.png"}
