@@ -1,0 +1,9 @@
+{
+"image":{"user":"https://spikeyan.github.io/shoe/user.png","product":"https://spikeyan.github.io/shoe/product.png","top":"https://spikeyan.github.io/shoe/top.png","left":"https://spikeyan.github.io/shoe/left.png","right":"https://spikeyan.github.io/shoe/right.png","back":"https://spikeyan.github.io/shoe/back.png","bottom":"https://spikeyan.github.io/shoe/bottom.png","topmask":"https://spikeyan.github.io/shoe/topmask.png","leftmask":"https://spikeyan.github.io/shoe/leftmask.png","rightmask":"https://spikeyan.github.io/shoe/rightmask.png","backmask":"https://spikeyan.github.io/shoe/backmask.png","zhidai":{"back":"https://spikeyan.github.io/shoe/backvzhidai.png"},"baobianbu":{"top":"https://spikeyan.github.io/shoe/topvbaobianbu.png","left":"https://spikeyan.github.io/shoe/leftvbaobianbu.png","right":"https://spikeyan.github.io/shoe/rightvbaobianbu.png","back":"https://spikeyan.github.io/shoe/backvbaobianbu.png"}},
+"relation":{
+            "top":{"x":-98,"y":-9,"ro":-2.7327,"sc":1.1599},
+            "left":{"x":61, "y":474, "ro":609.4271, "sc":0.6682},
+            "right":{"x":607, "y":17, "ro":102.6367, "sc":0.6616},
+            "back":{"x":0,"y":0,"ro":0,"sc":1}
+            }
+}
