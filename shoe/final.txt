@@ -1,4 +1,5 @@
 {
+"patternID":1,
 "image":{
             "user":"https://spikeyan.github.io/shoe/user.png",
             "product":"https://spikeyan.github.io/shoe/product.png",
