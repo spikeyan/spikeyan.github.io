@@ -1,0 +1,9 @@
+{
+"patternID":1,
+"color":{
+         "zhidai":"FFFFFF",
+         "baobianbu":"FFFFFF"
+        }
+ "qr":"top",
+ "comfort":0
+}
