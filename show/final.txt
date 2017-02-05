@@ -28,7 +28,7 @@
             "back":{"x":0,"y":0,"ro":0,"sc":1}
             },
 "color":{
-         "zhidai":["F596AA","D0104C","DDD23B","66BAB7","FFF521","0F5A48","65A1CA"],
-         "baobianbu":["8B81C3","E03C8A","DC9FB4","E83015","221AFA","FF1122","DEDEDE","112233","3322AA","OO33AA","BABABA"]
+         "zhidai":[{"value":"F596AA","price":0},{"value":"D0104C","price":0},{"value":"DDD23B","price":0},{"value":"66BAB7","price":0},{"value":"FFF521","price":0},{"value":"0F5A48","price":0},{"value":"65A1CA","price":0}],
+         "baobianbu":[{"value":"8B81C3","price":0},{"value":"E03C8A","price":0},{"value":"DC9FB4","price":0},{"value":"E83015","price":0},{"value":"221AFA","price":0},{"value":"FF1122","price":0},{"value":"DEDEDE","price":0},{"value":"112233","price":0},{"value":"3322AA","price":0},{"value":"OO33AA","price":0},{"value":"BABABA","price":0}]
         }
 }
