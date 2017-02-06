@@ -1,24 +1,24 @@
 {
 "image":{
-            "user":"https://spikeyan.github.io/shoe/user.png",
-            "product":"https://spikeyan.github.io/shoe/product.png",
-            "top":"https://spikeyan.github.io/shoe/top.png",
-            "left":"https://spikeyan.github.io/shoe/left.png",
-            "right":"https://spikeyan.github.io/shoe/right.png",
-            "back":"https://spikeyan.github.io/shoe/back.png",
-            "bottom":"https://spikeyan.github.io/shoe/bottom.png",
-            "topmask":"https://spikeyan.github.io/shoe/topmask.png",
-            "leftmask":"https://spikeyan.github.io/shoe/leftmask.png",
-            "rightmask":"https://spikeyan.github.io/shoe/rightmask.png",
-            "backmask":"https://spikeyan.github.io/shoe/backmask.png",
+            "user":"user.png",
+            "product":"product.png",
+            "top":"top.png",
+            "left":"left.png",
+            "right":"right.png",
+            "back":"back.png",
+            "bottom":"bottom.png",
+            "topmask":"topmask.png",
+            "leftmask":"leftmask.png",
+            "rightmask":"rightmask.png",
+            "backmask":"backmask.png",
             "zhidai":{
-                      "back":"https://spikeyan.github.io/shoe/backvzhidai.png"
+                      "back":"backvzhidai.png"
                       },
             "baobianbu":{
-                       "top":"https://spikeyan.github.io/shoe/topvbaobianbu.png",
-                       "left":"https://spikeyan.github.io/shoe/leftvbaobianbu.png",
-                       "right":"https://spikeyan.github.io/shoe/rightvbaobianbu.png",
-                       "back":"https://spikeyan.github.io/shoe/backvbaobianbu.png"
+                       "top":"topvbaobianbu.png",
+                       "left":"leftvbaobianbu.png",
+                       "right":"rightvbaobianbu.png",
+                       "back":"backvbaobianbu.png"
                        }
         },
 "relation":{
