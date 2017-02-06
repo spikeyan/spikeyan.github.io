@@ -1,5 +1,5 @@
 {
-"patternID":1,
+"patternID":"1",
 "image":{
             "user":"user.png",
             "product":"product.png",
